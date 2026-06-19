@@ -238,111 +238,15 @@
       <span>Q2</span>
       <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span>
     </button>
+    <div class="month-divider"></div>
+    <button class="month-tab" data-month="sales" onclick="setMonth('sales')" style="gap:6px;">
+      <span style="font-size:13px">🏆</span>
+      <span style="font-size:11px;font-weight:700;letter-spacing:.04em">SALES TEAM</span>
+    </button>
   </nav>
 </header>
 
 <main class="main">
-
-<!-- ════════════════════════════════
-     SALES TEAM PLANS
-════════════════════════════════ -->
-<div style="max-width:1100px;margin:0 auto;padding:32px 24px 0;">
-  <div class="section-title" style="margin-bottom:18px;">
-    🏆 Sales Team Plans
-    <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:10px;">Emre · Aleksandr · Derviş · Daria — Plan / Gerçekleşme</span>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
-
-    <!-- Emre -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar">E</div>Emre H.</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val" style="color:var(--gold)">131 / 200</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:65.5%"></div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val" style="color:#60A5FA">22 / 40</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:55%"></div></div>
-      </div>
-      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:10px;text-align:center;">
-        <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:6px;">
-          <div style="color:var(--text3);margin-bottom:2px;font-size:9px">Hafta 1</div>
-          <div style="font-weight:700;color:var(--gold)">66 dok</div>
-          <div style="font-size:9px;color:#60A5FA">8 top</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:6px;">
-          <div style="color:var(--text3);margin-bottom:2px;font-size:9px">Hafta 2</div>
-          <div style="font-weight:700;color:var(--gold)">65 dok</div>
-          <div style="font-size:9px;color:#60A5FA">14 top</div>
-        </div>
-      </div>
-      <div style="font-size:10px;color:var(--green);margin-top:8px;text-align:center">%65.5 · Ort 65.5 dok/hafta</div>
-    </div>
-
-    <!-- Aleksandr -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)">A</div>Aleksandr</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val" style="color:var(--gold)">164 / 200</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:82%"></div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val" style="color:#60A5FA">25 / 40</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:62.5%"></div></div>
-      </div>
-      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:10px;text-align:center;">
-        <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:6px;">
-          <div style="color:var(--text3);margin-bottom:2px;font-size:9px">Hafta 1</div>
-          <div style="font-weight:700;color:var(--gold)">75 dok</div>
-          <div style="font-size:9px;color:#60A5FA">13 top</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:6px;">
-          <div style="color:var(--text3);margin-bottom:2px;font-size:9px">Hafta 2</div>
-          <div style="font-weight:700;color:var(--gold)">89 dok</div>
-          <div style="font-size:9px;color:#60A5FA">12 top</div>
-        </div>
-      </div>
-      <div style="font-size:10px;color:var(--green);margin-top:8px;text-align:center">%82 · Ort 82 dok/hafta</div>
-    </div>
-
-    <!-- Derviş -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">D</div>Derviş</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">— / 100</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">— / 20</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
-      </div>
-      <div style="margin-top:10px;background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;font-size:10px;color:var(--text3);text-align:center">
-        Plan: 100 dok · 20 top/hafta
-      </div>
-      <div style="font-size:10px;color:var(--gold);margin-top:8px;text-align:center">Veri bekleniyor</div>
-    </div>
-
-    <!-- Daria -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#EC4899,#BE185D)">D</div>Daria</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">0 / 100</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">0 / 20</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
-      </div>
-      <div style="margin-top:10px;background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;font-size:10px;color:var(--text3);text-align:center">
-        Plan: 100 dok · 20 top/hafta
-      </div>
-      <div style="font-size:10px;color:var(--text3);margin-top:8px;text-align:center">Yeni başlangıç</div>
-    </div>
-
-  </div>
-</div>
-
-<div style="height:32px"></div>
 
 <!-- ════════════════════════════════
      NİSAN (APRIL)
@@ -833,71 +737,123 @@
 </div><!-- /view-all -->
 
 <!-- ════════════════════════════════
-     SATIŞ RAPORU — Haziran 2026
-     (Derviş · Emre · Daria)
+     SALES TEAM PLANS
 ════════════════════════════════ -->
-<div style="max-width:1100px;margin:0 auto;padding:0 24px 40px;">
-  <div class="section-title" style="margin-bottom:18px;margin-top:0;">
-    📋 <span data-i18n="srTitle">Satış Raporu</span>
-    <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:8px;">Haziran 2026 · Emre · Derviş · Daria</span>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-    <!-- Emre -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar">E</div>Emre H.</div>
-      <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-style:italic">Aktif · 2 Hafta Verisi</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val" style="color:var(--gold)">131 / 200</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:65.5%"></div></div>
+<div class="month-view" id="view-sales">
+
+  <div class="hero" style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(201,169,110,0.08));border-color:rgba(124,58,237,0.2);">
+    <div class="hero-top">
+      <div>
+        <div class="hero-h">🏆 Sales Team Plans</div>
+        <div class="hero-sub">Ocak 2026 · 2 haftalık veri · Emre · Derviş · Daria</div>
       </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val" style="color:#60A5FA">22 / 40</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:55%"></div></div>
-      </div>
-      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:10px;text-align:center;">
-        <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:6px;">
-          <div style="color:var(--text3);margin-bottom:2px">Hafta 1</div>
-          <div style="font-weight:700;color:var(--gold)">66 dok · 8 top</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:6px;">
-          <div style="color:var(--text3);margin-bottom:2px">Hafta 2</div>
-          <div style="font-weight:700;color:var(--gold)">65 dok · 14 top</div>
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--green);margin-top:8px">%65.5 dokunuş · %55 toplantı</div>
     </div>
-    <!-- Derviş / Daryoush -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">D</div>Derviş</div>
-      <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-style:italic">Aktif · Veri Bekleniyor</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">— / 100</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">— / 20</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
-      </div>
-      <div style="font-size:11px;color:var(--gold);margin-top:8px">Excel verisi girilmemiş</div>
-    </div>
-    <!-- Daria -->
-    <div class="manager-card">
-      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#EC4899,#BE185D)">D</div>Daria</div>
-      <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-style:italic">Yeni Başlangıç · Plan Tanımlandı</div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">0 / 100</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">0 / 20</span></div>
-        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
-      </div>
-      <div style="margin-top:10px;font-size:10px;background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;color:var(--text3)">
-        Plan: 100 dok/hafta · 20 toplantı/hafta<br>Gerçekleşme henüz girilmemiş
-      </div>
+    <div class="hero-kpis" style="grid-template-columns:repeat(4,1fr)">
+      <div><div class="hero-kpi-label">Toplam Dokunuş</div><div class="hero-kpi-value" style="color:var(--gold)">295</div><div class="hero-kpi-note">131 Emre + 164 Derviş</div></div>
+      <div><div class="hero-kpi-label">Toplam Toplantı</div><div class="hero-kpi-value" style="color:#60A5FA">47</div><div class="hero-kpi-note">22 Emre + 25 Derviş</div></div>
+      <div><div class="hero-kpi-label">Ort. Dokunuş/Hafta</div><div class="hero-kpi-value" style="color:var(--green)">73.8</div><div class="hero-kpi-note">Emre+Derviş ort.</div></div>
+      <div><div class="hero-kpi-label">Aktif Müdür</div><div class="hero-kpi-value">2 / 3</div><div class="hero-kpi-note">Daria — yeni başlangıç</div></div>
     </div>
   </div>
-</div>
+
+  <div class="section">
+    <div class="section-title">Satış Müdürü — Plan / Gerçekleşme</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+
+      <!-- Emre -->
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar">E</div>Emre H.</div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)">(arama/mesaj/e-posta)</span></span><span class="prog-val" style="color:var(--gold)">131 / 200</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:65.5%"></div></div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)">(yüz yüze/video)</span></span><span class="prog-val" style="color:#60A5FA">22 / 40</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-blue" style="width:55%"></div></div>
+        </div>
+        <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;">
+          <div style="font-size:9px;color:var(--text3);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">Haftalık Dağılım</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
+            <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">12–16 Ocak</div>
+              <div style="font-weight:700;color:var(--gold);font-size:15px">66</div>
+              <div style="font-size:9px;color:var(--text3)">dokunuş</div>
+              <div style="font-size:9px;color:#60A5FA;margin-top:3px">8 toplantı</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">19–23 Ocak</div>
+              <div style="font-weight:700;color:var(--gold);font-size:15px">65</div>
+              <div style="font-size:9px;color:var(--text3)">dokunuş</div>
+              <div style="font-size:9px;color:#60A5FA;margin-top:3px">14 toplantı</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--green);margin-top:10px;text-align:center">%65.5 hedef · Ort. 65.5 dok/hafta</div>
+      </div>
+
+      <!-- Derviş -->
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">D</div>Derviş</div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)">(arama/mesaj/e-posta)</span></span><span class="prog-val" style="color:var(--gold)">164 / 200</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:82%"></div></div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)">(yüz yüze/video)</span></span><span class="prog-val" style="color:#60A5FA">25 / 40</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-blue" style="width:62.5%"></div></div>
+        </div>
+        <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;">
+          <div style="font-size:9px;color:var(--text3);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">Haftalık Dağılım</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
+            <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">12–16 Ocak</div>
+              <div style="font-weight:700;color:var(--gold);font-size:15px">75</div>
+              <div style="font-size:9px;color:var(--text3)">dokunuş</div>
+              <div style="font-size:9px;color:#60A5FA;margin-top:3px">13 toplantı</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">19–23 Ocak</div>
+              <div style="font-weight:700;color:var(--gold);font-size:15px">89</div>
+              <div style="font-size:9px;color:var(--text3)">dokunuş</div>
+              <div style="font-size:9px;color:#60A5FA;margin-top:3px">12 toplantı</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--green);margin-top:10px;text-align:center">%82 hedef · Ort. 82 dok/hafta</div>
+      </div>
+
+      <!-- Daria -->
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#EC4899,#BE185D)">D</div>Daria</div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)">(arama/mesaj/e-posta)</span></span><span class="prog-val">0 / 200</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)">(yüz yüze/video)</span></span><span class="prog-val">0 / 40</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
+        </div>
+        <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
+            <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">12–16 Ocak</div>
+              <div style="font-weight:700;color:var(--text3);font-size:15px">0</div>
+              <div style="font-size:9px;color:var(--text3)">dokunuş · 0 toplantı</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:8px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">19–23 Ocak</div>
+              <div style="font-weight:700;color:var(--text3);font-size:15px">0</div>
+              <div style="font-size:9px;color:var(--text3)">dokunuş · 0 toplantı</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:10px;text-align:center">Yeni başlangıç — gerçekleşme girilmemiş</div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /view-sales -->
 
 </main>
 
