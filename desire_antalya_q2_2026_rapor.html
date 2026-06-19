@@ -590,21 +590,30 @@
       </div>
       <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span>
     </div>
-    <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
-      <div><div class="hero-kpi-label" data-i18n="totalWebUsers">Toplam Web Kullanıcı</div><div class="hero-kpi-value" style="color:var(--green)">1.176</div><div class="hero-kpi-note">Apr+May+Jun</div></div>
-      <div><div class="hero-kpi-label" data-i18n="totalPageViews">Toplam Sayfa Görüntüleme</div><div class="hero-kpi-value">1.563</div></div>
-      <div><div class="hero-kpi-label" data-i18n="metaLeads">Toplam Meta Lead</div><div class="hero-kpi-value" style="color:var(--gold)">200</div><div class="hero-kpi-note">92 B2C + 108 B2B</div></div>
-      <div><div class="hero-kpi-label" data-i18n="metaSpend">Meta Harcama</div><div class="hero-kpi-value">₺55.4K</div></div>
-      <div><div class="hero-kpi-label" data-i18n="igViews">Instagram Görüntüleme</div><div class="hero-kpi-value">457K+</div></div>
+    <!-- Data sources included -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;margin-top:4px;">
+      <div style="background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.15);border-radius:10px;padding:12px 14px;">
+        <div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:4px;">📊 <span data-i18n="ds_meta">Meta Ads Kampanya Verileri</span></div>
+        <div style="font-size:10px;color:var(--text3)" data-i18n="ds_metaDesc">Desire CIS B2C + B2B + Profil kampanyaları — toplam lead, harcama, erişim, CPL, CTR</div>
+      </div>
+      <div style="background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.12);border-radius:10px;padding:12px 14px;">
+        <div style="font-size:10px;font-weight:700;color:var(--green);margin-bottom:4px;">🔍 <span data-i18n="ds_gsc">Google Search Console</span></div>
+        <div style="font-size:10px;color:var(--text3)" data-i18n="ds_gscDesc">Organik arama tıklamaları, gösterimler, CTR ve sıralama — en çok aranan 4 sorgu</div>
+      </div>
+      <div style="background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.15);border-radius:10px;padding:12px 14px;">
+        <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:4px;">👥 <span data-i18n="ds_sales">Satış Müdürü Performansı</span></div>
+        <div style="font-size:10px;color:var(--text3)" data-i18n="ds_salesDesc">Aktif satış müdürlerinin haftalık dokunuş ve toplantı hedef vs gerçekleşme verisi</div>
+      </div>
     </div>
-  </div>
-
-  <!-- Monthly Trend -->
-  <div class="section">
-    <div class="section-title" data-i18n="sectionTrend">Aylık Trend — <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
-    <div class="card">
-      <div class="card-title mb16" data-i18n="monthlyComparison">Aylık Metrik Karşılaştırması</div>
-      <div class="chart-wrap tall"><canvas id="webChart"></canvas></div>
+    <div class="hero-kpis" style="grid-template-columns:repeat(4,1fr)">
+      <div><div class="hero-kpi-label" data-i18n="totalWebUsers">Toplam Web Kullanıcı</div><div class="hero-kpi-value" style="color:var(--green)">1.176</div><div class="hero-kpi-note" data-i18n="d_activeUsers">(Nisan + Mayıs + Haziran)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="metaLeads">Toplam Meta Lead</div><div class="hero-kpi-value" style="color:var(--gold)">200</div><div class="hero-kpi-note">92 B2C · 108 B2B</div></div>
+      <div>
+        <div class="hero-kpi-label" data-i18n="metaSpend">Meta Harcama</div>
+        <div class="hero-kpi-value">₺55.4K</div>
+        <div class="hero-kpi-note" style="color:#6EE7B7">≈ $1,193 <span style="font-size:9px;color:var(--text3)">(₺46,44/$)</span></div>
+      </div>
+      <div><div class="hero-kpi-label" data-i18n="totalClicks">Google Organik Tıklama</div><div class="hero-kpi-value">70</div><div class="hero-kpi-note" data-i18n="d_clicks2">(2.410 gösterimden)</div></div>
     </div>
   </div>
 
@@ -719,57 +728,147 @@
     <div class="qrow"><div class="qnum">4</div><div class="qterm">altinis</div><div class="qmet">1</div><div class="qmet">1</div><div class="qmet" style="color:var(--green)">%100</div><div class="qmet">6,00</div></div>
   </div>
 
-  <!-- Sales Managers 3-month -->
+  <!-- Sales Managers Q2 — Emre + Aleksandr only -->
   <div class="section">
     <div class="section-title"><span data-i18n="sectionSales">Satış Müdürleri — Plan / Gerçekleşme</span> &nbsp;<span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
-    <div class="grid4">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
       <div class="manager-card">
-        <div class="manager-name"><div class="manager-avatar">E</div>Emre</div>
+        <div class="manager-name"><div class="manager-avatar">E</div>Emre H.</div>
         <div class="prog-wrap">
-          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)" data-i18n="d_touchShort">(arama/mesaj/e-posta)</span></span><span class="prog-val">66 / 100</span></div>
-          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:66%"></div></div>
+          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)">(arama/mesaj/e-posta)</span></span><span class="prog-val">131 / 200</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:65.5%"></div></div>
         </div>
         <div class="prog-wrap">
-          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)" data-i18n="d_meetShort">(yüz yüze/video)</span></span><span class="prog-val">8 / 20</span></div>
+          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)">(yüz yüze/video)</span></span><span class="prog-val">8 / 20</span></div>
           <div class="prog-bg"><div class="prog-fill fill-blue" style="width:40%"></div></div>
         </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="emreAvg">Ort. 65.5 dokunuş/hafta</div>
+        <!-- Haftalık geçmiş -->
+        <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+          <div style="font-size:10px;color:var(--text3);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Haftalık Tarihsel Veri</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">H1 Nisan</div>
+              <div style="font-size:15px;font-weight:700;color:var(--gold)">66</div>
+              <div style="font-size:8px;color:var(--text3)">dokunuş</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">H2 Mayıs</div>
+              <div style="font-size:15px;font-weight:700;color:var(--gold)">65</div>
+              <div style="font-size:8px;color:var(--text3)">dokunuş</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Toplantı</div>
+              <div style="font-size:15px;font-weight:700;color:#60A5FA">8</div>
+              <div style="font-size:8px;color:var(--text3)">adet</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Ort/hafta</div>
+              <div style="font-size:15px;font-weight:700;color:var(--green)">65.5</div>
+              <div style="font-size:8px;color:var(--text3)">dokunuş</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="manager-card">
         <div class="manager-name"><div class="manager-avatar">A</div>Aleksandr</div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">75 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:75%"></div></div></div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">13 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:65%"></div></div></div>
-        <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="aleksAvg">Ort. 82 dokunuş/hafta</div>
-      </div>
-      <div class="manager-card">
-        <div class="manager-name"><div class="manager-avatar">Ö</div>Özgür</div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">16 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:16%"></div></div></div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">0 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div></div>
-        <div style="font-size:11px;color:var(--red);margin-top:8px" data-i18n="missingData">Eksik veri — takip gerekli</div>
-      </div>
-      <div class="manager-card">
-        <div class="manager-name"><div class="manager-avatar">D</div>Daria</div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">0 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div></div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">0 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div></div>
-        <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="newStart">Yeni başlangıç</div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)">(arama/mesaj/e-posta)</span></span><span class="prog-val">164 / 200</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:82%"></div></div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)">(yüz yüze/video)</span></span><span class="prog-val">13 / 20</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-blue" style="width:65%"></div></div>
+        </div>
+        <!-- Haftalık geçmiş -->
+        <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+          <div style="font-size:10px;color:var(--text3);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Haftalık Tarihsel Veri</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">H1 Nisan</div>
+              <div style="font-size:15px;font-weight:700;color:var(--gold)">75</div>
+              <div style="font-size:8px;color:var(--text3)">dokunuş</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">H2 Mayıs</div>
+              <div style="font-size:15px;font-weight:700;color:var(--gold)">89</div>
+              <div style="font-size:8px;color:var(--text3)">dokunuş</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Toplantı</div>
+              <div style="font-size:15px;font-weight:700;color:#60A5FA">13</div>
+              <div style="font-size:8px;color:var(--text3)">adet</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:7px;padding:8px 4px;">
+              <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Ort/hafta</div>
+              <div style="font-size:15px;font-weight:700;color:var(--green)">82</div>
+              <div style="font-size:8px;color:var(--text3)">dokunuş</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card" style="margin-top:18px">
-      <div class="card-title mb16" data-i18n="salesChartTitle">Satış Müdürü Dokunuş Performansı (Plan vs Gerçekleşme)</div>
+      <div class="card-title mb16">Satış Müdürü Dokunuş Performansı — Plan vs Gerçekleşme</div>
       <div class="chart-wrap"><canvas id="salesChart"></canvas></div>
     </div>
   </div>
 
-  <!-- Social trend 3-month -->
-  <div class="section">
-    <div class="section-title"><span data-i18n="sectionSocial">Sosyal Medya</span> &nbsp;<span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
-    <div class="card">
-      <div class="card-title mb16" data-i18n="igTrend">Instagram & Facebook Görüntüleme Trendi</div>
-      <div class="chart-wrap tall"><canvas id="socialChart"></canvas></div>
+</div><!-- /view-all -->
+
+<!-- ════════════════════════════════
+     SATIŞ RAPORU — Haziran 2026
+     (Derviş · Emre · Daria)
+════════════════════════════════ -->
+<div style="max-width:1100px;margin:0 auto;padding:0 24px 40px;">
+  <div class="section-title" style="margin-bottom:18px;margin-top:0;">
+    📋 <span data-i18n="srTitle">Satış Raporu</span>
+    <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:8px;">Haziran 2026 · Emre · Derviş · Daria</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <!-- Emre -->
+    <div class="manager-card">
+      <div class="manager-name"><div class="manager-avatar">E</div>Emre H.</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-style:italic" data-i18n="srSince">Haziran 2026 · Aktif</div>
+      <div class="prog-wrap">
+        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">66 / 100</span></div>
+        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:66%"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">4 / 10</span></div>
+        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:40%"></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--green);margin-top:8px">%66 hedef gerçekleşme</div>
+    </div>
+    <!-- Derviş -->
+    <div class="manager-card">
+      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">D</div>Derviş</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-style:italic" data-i18n="srSince">Haziran 2026 · Aktif</div>
+      <div class="prog-wrap">
+        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">— / 100</span></div>
+        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">— / 10</span></div>
+        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--gold);margin-top:8px">Veri bekleniyor</div>
+    </div>
+    <!-- Daria -->
+    <div class="manager-card">
+      <div class="manager-name"><div class="manager-avatar" style="background:linear-gradient(135deg,#EC4899,#BE185D)">D</div>Daria</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-style:italic">Haziran 2026 · Yeni Başlangıç</div>
+      <div class="prog-wrap">
+        <div class="prog-header"><span class="prog-label">Dokunuş</span><span class="prog-val">0 / 100</span></div>
+        <div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-header"><span class="prog-label">Toplantı</span><span class="prog-val">0 / 10</span></div>
+        <div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="newStart">Yeni başlangıç</div>
     </div>
   </div>
-
-</div><!-- /view-all -->
+</div>
 
 </main>
 
@@ -848,6 +947,16 @@ const i18n = {
     d_touchShort:'(arama/mesaj/e-posta)',
     d_meetShort:'(yüz yüze/video)',
     adCamp:'Kampanya',
+    srTitle:'Satış Raporu',
+    srSince:'Haziran 2026 · Aktif',
+    ds_meta:'Meta Ads Kampanya Verileri',
+    ds_metaDesc:'Desire CIS B2C + B2B + Profil kampanyaları — toplam lead, harcama, erişim, CPL, CTR',
+    ds_gsc:'Google Search Console',
+    ds_gscDesc:'Organik arama tıklamaları, gösterimler, CTR ve sıralama — en çok aranan 4 sorgu',
+    ds_sales:'Satış Müdürü Performansı',
+    ds_salesDesc:'Aktif satış müdürlerinin haftalık dokunuş ve toplantı hedef vs gerçekleşme verisi',
+    d_clicks2:'(2.410 gösterimden)',
+    totalClicks:'Google Organik Tıklama',
   },
   en:{
     apr:'April', jun:'June', live:'LIVE', aprFull:'April 2026', mayFull:'May 2026',
@@ -914,6 +1023,16 @@ const i18n = {
     d_touchShort:'(call/message/email)',
     d_meetShort:'(face-to-face/video)',
     adCamp:'Campaign',
+    srTitle:'Sales Report',
+    srSince:'June 2026 · Active',
+    ds_meta:'Meta Ads Campaign Data',
+    ds_metaDesc:'Desire CIS B2C + B2B + Profile campaigns — total leads, spend, reach, CPL, CTR',
+    ds_gsc:'Google Search Console',
+    ds_gscDesc:'Organic search clicks, impressions, CTR and position — top 4 queries',
+    ds_sales:'Sales Manager Performance',
+    ds_salesDesc:'Weekly touch and meeting plan vs actual data for active sales managers',
+    d_clicks2:'(from 2,410 impressions)',
+    totalClicks:'Google Organic Clicks',
   },
   uk:{
     apr:'Квітень', jun:'Червень', live:'АКТУАЛЬНО', aprFull:'Квітень 2026', mayFull:'Травень 2026',
@@ -980,6 +1099,16 @@ const i18n = {
     d_touchShort:'(дзвінок/повідомлення/e-mail)',
     d_meetShort:'(особисто/відео)',
     adCamp:'Кампанія',
+    srTitle:'Звіт з продажів',
+    srSince:'Червень 2026 · Активний',
+    ds_meta:'Дані кампаній Meta Ads',
+    ds_metaDesc:'Кампанії Desire CIS B2C + B2B + Профіль — ліди, витрати, охоплення, CPL, CTR',
+    ds_gsc:'Google Search Console',
+    ds_gscDesc:'Кліки органічного пошуку, покази, CTR та позиція — топ-4 запити',
+    ds_sales:'Ефективність менеджерів з продажу',
+    ds_salesDesc:'Щотижневі дані контактів та зустрічей (план vs факт) активних менеджерів',
+    d_clicks2:'(з 2 410 показів)',
+    totalClicks:'Кліки органічного пошуку Google',
   }
 };
 let currentLang='tr', currentMonth='apr';
@@ -1015,32 +1144,18 @@ Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif"; Chart.defaults.fon
 const monthLbls={tr:['Nisan','Mayıs','Haziran*'],en:['April','May','June*'],uk:['Квітень','Травень','Червень*']};
 const webDsLbls={tr:['Etkin Kullanıcı','Sayfa Görüntüleme','Yeni Kullanıcı'],en:['Active Users','Page Views','New Users'],uk:['Активні кор.','Перегляди','Нові кор.']};
 const socDsLbls={tr:['Instagram Görüntüleme','Facebook Görüntüleme','Instagram Erişim'],en:['Instagram Views','Facebook Views','Instagram Reach'],uk:['Перегляди Instagram','Перегляди Facebook','Охоплення Instagram']};
-const salesLbls={tr:['Emre H1','Emre H2','Aleksandr H1','Aleksandr H2','Özgür'],en:['Emre W1','Emre W2','Aleksandr W1','Aleksandr W2','Özgür'],uk:['Емре Т1','Емре Т2','Олекс Т1','Олекс Т2','Озгюр']};
+const salesLbls={tr:['Emre H1','Emre H2','Aleksandr H1','Aleksandr H2'],en:['Emre W1','Emre W2','Aleksandr W1','Aleksandr W2'],uk:['Емре Т1','Емре Т2','Олекс Т1','Олекс Т2']};
 const planActLbls={tr:['Plan','Gerçekleşen'],en:['Plan','Actual'],uk:['План','Факт']};
 const leadLbls={tr:['B2B Leads','B2C Leads'],en:['B2B Leads','B2C Leads'],uk:['B2B Ліди','B2C Ліди']};
 const spendLbls={tr:['B2C','B2B','Profil'],en:['B2C','B2B','Profile'],uk:['B2C','B2B','Профіль']};
 
-let webChart, socialChart, adsLeadChart, adsSpendChart, salesChart;
+let adsLeadChart, adsSpendChart, salesChart;
 
 function rebuildCharts(){
   const lang=currentLang;
-  if(webChart) webChart.destroy();
-  if(socialChart) socialChart.destroy();
   if(adsLeadChart) adsLeadChart.destroy();
   if(adsSpendChart) adsSpendChart.destroy();
   if(salesChart) salesChart.destroy();
-
-  webChart=new Chart(document.getElementById('webChart'),{type:'bar',data:{labels:monthLbls[lang],datasets:[
-    {label:webDsLbls[lang][0],data:[417,487,272],backgroundColor:'rgba(96,165,250,0.75)',borderRadius:6,borderSkipped:false},
-    {label:webDsLbls[lang][1],data:[587,637,339],backgroundColor:'rgba(201,169,110,0.75)',borderRadius:6,borderSkipped:false},
-    {label:webDsLbls[lang][2],data:[385,463,245],backgroundColor:'rgba(74,222,128,0.55)',borderRadius:6,borderSkipped:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}},scales:{x:{grid:{color:border}},y:{grid:{color:border},beginAtZero:true}}}});
-
-  socialChart=new Chart(document.getElementById('socialChart'),{type:'line',data:{labels:monthLbls[lang],datasets:[
-    {label:socDsLbls[lang][0],data:[47700,307300,102700],borderColor:purple,backgroundColor:'rgba(167,139,250,0.08)',tension:0.4,fill:true,pointBackgroundColor:purple,pointRadius:5},
-    {label:socDsLbls[lang][1],data:[1735,78946,66542],borderColor:blue,backgroundColor:'rgba(96,165,250,0.06)',tension:0.4,fill:true,pointBackgroundColor:blue,pointRadius:5},
-    {label:socDsLbls[lang][2],data:[21900,125400,53300],borderColor:gold,tension:0.4,fill:false,pointBackgroundColor:gold,pointRadius:5,borderDash:[4,3]}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}},scales:{x:{grid:{color:border}},y:{grid:{color:border},ticks:{callback:v=>v>=1000?(v/1000).toFixed(0)+'K':v},beginAtZero:true}}}});
 
   const leadTitle=lang==='uk'?'Розподіл лідів':lang==='en'?'Lead Distribution':'Lead Dağılımı';
   const spendTitle=lang==='uk'?'Розподіл витрат':lang==='en'?'Spend Distribution':'Harcama Dağılımı';
@@ -1049,8 +1164,8 @@ function rebuildCharts(){
   adsSpendChart=new Chart(document.getElementById('adsSpendChart'),{type:'doughnut',data:{labels:spendLbls[lang],datasets:[{data:[27586,25796,2062],backgroundColor:[blue,purple,green],borderColor:'#141B2D',borderWidth:3,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,font:{size:10}}},title:{display:true,text:spendTitle,color:text2,font:{size:11},padding:{bottom:8}}},cutout:'68%'}});
 
   salesChart=new Chart(document.getElementById('salesChart'),{type:'bar',data:{labels:salesLbls[lang],datasets:[
-    {label:planActLbls[lang][0],data:[100,100,100,100,100],backgroundColor:'rgba(255,255,255,0.08)',borderRadius:4,borderSkipped:false},
-    {label:planActLbls[lang][1],data:[66,65,75,89,16],backgroundColor:['rgba(201,169,110,0.8)','rgba(201,169,110,0.8)','rgba(96,165,250,0.8)','rgba(96,165,250,0.8)','rgba(248,113,113,0.7)'],borderRadius:4,borderSkipped:false}
+    {label:planActLbls[lang][0],data:[100,100,100,100],backgroundColor:'rgba(255,255,255,0.08)',borderRadius:4,borderSkipped:false},
+    {label:planActLbls[lang][1],data:[66,65,75,89],backgroundColor:['rgba(201,169,110,0.8)','rgba(201,169,110,0.8)','rgba(96,165,250,0.8)','rgba(96,165,250,0.8)'],borderRadius:4,borderSkipped:false}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}},scales:{x:{grid:{color:border}},y:{grid:{color:border},beginAtZero:true,max:110}}}});
 }
 
