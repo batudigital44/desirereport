@@ -148,6 +148,30 @@
   .qh{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);text-align:right;}
   .qh:nth-child(2){text-align:left;}
 
+  /* TOOLTIP */
+  .tip{display:inline-flex;align-items:center;gap:4px;cursor:help;position:relative;}
+  .tip .ti{width:13px;height:13px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:8px;color:var(--text3);font-style:normal;flex-shrink:0;transition:all .2s;}
+  .tip:hover .ti{background:var(--gold3);border-color:rgba(201,169,110,0.4);color:var(--gold);}
+  .tip .tb{visibility:hidden;opacity:0;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0D1825;border:1px solid rgba(201,169,110,0.2);border-radius:10px;padding:10px 14px;width:240px;font-size:11px;color:var(--text2);line-height:1.5;z-index:999;transition:opacity .2s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+  .tip .tb::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(201,169,110,0.2);}
+  .tip:hover .tb{visibility:visible;opacity:1;}
+  .tip .tb strong{color:var(--gold);display:block;margin-bottom:3px;font-size:11px;}
+
+  /* DESCRIPTIONS */
+  .card-desc{font-size:10px;color:var(--text3);margin-top:3px;line-height:1.4;font-style:italic;}
+  .usd-note{font-size:10px;color:var(--text3);margin-top:2px;}
+  .usd-note span{color:#6EE7B7;font-weight:600;}
+  .traffic-desc{font-size:10px;color:var(--text3);margin-top:1px;line-height:1.3;}
+  .ad-mk-desc{font-size:9px;color:var(--text3);margin-top:2px;line-height:1.3;}
+  .hero-kpi-desc{font-size:10px;color:var(--text3);margin-top:2px;font-style:italic;line-height:1.3;}
+
+  /* INFO BOX */
+  .info-box{background:rgba(201,169,110,0.05);border:1px solid rgba(201,169,110,0.15);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .info-item{display:flex;align-items:flex-start;gap:10px;}
+  .info-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+  .info-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:2px;}
+  .info-desc{font-size:10px;color:var(--text3);line-height:1.4;}
+
   /* FOOTER */
   .footer{border-top:1px solid var(--border);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text3);font-size:11px;}
 
@@ -233,11 +257,11 @@
       </div>
     </div>
     <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
-      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--apr)">417</div></div>
-      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">385</div></div>
-      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">587</div></div>
-      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">526</div></div>
-      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">27 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--apr)">417</div><div class="hero-kpi-desc" data-i18n="d_activeUsers">(Sitede tıklama, kaydırma veya form gibi gerçek işlem yapan kişi)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">385</div><div class="hero-kpi-desc" data-i18n="d_newUsers">(Bu ay siteyi ilk kez ziyaret eden benzersiz kişi)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">587</div><div class="hero-kpi-desc" data-i18n="d_pageViews">(Toplam sayfa yükleme sayısı — aynı kişi birden fazla saysa)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">526</div><div class="hero-kpi-desc" data-i18n="d_sessions">(Her ziyaret = 1 oturum. 30 dk hareketsizlik sonrası yeni oturum başlar)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">27 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-desc" data-i18n="d_avgEng">(Kullanıcının sayfaya aktif baktığı ortalama süre)</div></div>
     </div>
   </div>
 
@@ -245,20 +269,32 @@
   <div class="section">
     <div class="section-title" data-i18n="sectionWeb">Web Analytics — Google Analytics 4</div>
     <div class="grid4 mb18">
-      <div class="card-sm"><div class="card-title" data-i18n="formStarts">Form Başlatma</div><div class="card-value">13</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="scrollEvents">Scroll Etkinliği</div><div class="card-value">82</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="thankYouPage">Thank-You</div><div class="card-value">9</div><div class="text-xs" data-i18n="views">görüntüleme</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="card-value">27 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Form Başlatma <i class="ti">i</i><span class="tb"><strong>Form Başlatma</strong>Ziyaretçinin iletişim/talep formunu doldurmaya başladığı an. Tamamlanmayan formları da kapsar — gerçek ilgi sinyali.</span></span></div>
+        <div class="card-value">13</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Scroll Etkinliği <i class="ti">i</i><span class="tb"><strong>Scroll Etkinliği</strong>Sayfayı %90 oranında aşağı kaydıran kullanıcı sayısı. Yüksek scroll = içeriği baştan sona okuyan gerçek ilgili ziyaretçi.</span></span></div>
+        <div class="card-value">82</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Thank-You Sayfası <i class="ti">i</i><span class="tb"><strong>Thank-You Sayfası</strong>Formu başarıyla tamamlayan ziyaretçinin yönlendirildiği teşekkür sayfası. Her görüntüleme = 1 tamamlanmış form = 1 potansiyel müşteri (lead).</span></span></div>
+        <div class="card-value">9</div><div class="text-xs">görüntüleme</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Ort. Etkileşim <i class="ti">i</i><span class="tb"><strong>Ortalama Etkileşim Süresi</strong>Kullanıcıların sayfada aktif olarak geçirdiği ortalama süre. Sekmede açık bırakmak değil, gerçekten sayfaya baktığı an sayılır.</span></span></div>
+        <div class="card-value">27 <span style="font-size:14px">sn</span></div>
+      </div>
     </div>
     <div class="grid2">
       <div class="card">
         <div class="card-title mb16" data-i18n="trafficChannels">Trafik Kanalları</div>
-        <div class="traffic-item"><div class="traffic-name">Direct</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:38%;background:var(--blue)"></div></div><div class="traffic-num">208</div><div class="traffic-pct">%38,7</div></div>
-        <div class="traffic-item"><div class="traffic-name">Referral</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:31%;background:var(--gold)"></div></div><div class="traffic-num">169</div><div class="traffic-pct">%31,5</div></div>
-        <div class="traffic-item"><div class="traffic-name">Organic Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:19%;background:var(--green)"></div></div><div class="traffic-num">105</div><div class="traffic-pct">%19,6</div></div>
-        <div class="traffic-item"><div class="traffic-name">Organic Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--purple)"></div></div><div class="traffic-num">36</div><div class="traffic-pct">%6,7</div></div>
-        <div class="traffic-item"><div class="traffic-name">Paid Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--red)"></div></div><div class="traffic-num">3</div><div class="traffic-pct">%0,6</div></div>
-        <div class="traffic-item"><div class="traffic-name">Organic Video</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">2</div><div class="traffic-pct">%0,4</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Direct <i class="ti">i</i><span class="tb"><strong>Direct (Doğrudan)</strong>URL'yi tarayıcıya doğrudan yazan, yer iminden veya kayıtsız kaynaktan gelen ziyaretçiler. Genellikle marka bilinirliği yüksek kitledir.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:38%;background:var(--blue)"></div></div><div class="traffic-num">208</div><div class="traffic-pct">%38,7</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Referral <i class="ti">i</i><span class="tb"><strong>Referral (Yönlendirme)</strong>Başka bir web sitesindeki link üzerinden gelen trafik. Haber siteleri, iş ortakları, emlak portalları gibi harici kaynaklardan gelir.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:31%;background:var(--gold)"></div></div><div class="traffic-num">169</div><div class="traffic-pct">%31,5</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Organic Search <i class="ti">i</i><span class="tb"><strong>Organic Search (Organik Arama)</strong>Google, Bing gibi arama motorlarında reklam vermeden, SEO sayesinde üst sıralara çıkarak gelen ücretsiz trafik.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:19%;background:var(--green)"></div></div><div class="traffic-num">105</div><div class="traffic-pct">%19,6</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Organic Social <i class="ti">i</i><span class="tb"><strong>Organic Social (Organik Sosyal)</strong>Instagram, Facebook gibi sosyal medya paylaşımlarından reklam harcaması yapmadan gelen trafik. Post, story veya profil linkinden gelir.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--purple)"></div></div><div class="traffic-num">36</div><div class="traffic-pct">%6,7</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Paid Social <i class="ti">i</i><span class="tb"><strong>Paid Social (Ücretli Sosyal)</strong>Meta (Facebook/Instagram) reklamlarına tıklayarak gelen ziyaretçiler. Her tıklama için reklam bütçesinden ödeme yapılır.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--red)"></div></div><div class="traffic-num">3</div><div class="traffic-pct">%0,6</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Organic Video <i class="ti">i</i><span class="tb"><strong>Organic Video</strong>YouTube veya diğer video platformlarındaki organik (reklamsız) videolarda yer alan linklerden gelen trafik.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">2</div><div class="traffic-pct">%0,4</div></div>
       </div>
       <div class="card">
         <div class="card-title mb16" data-i18n="countryDist">Ülke Dağılımı</div>
@@ -338,31 +374,43 @@
       <span class="card-delta up">↑ <span data-i18n="peakMonth">En Yüksek Ay</span></span>
     </div>
     <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
-      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--may)">487</div><div class="hero-kpi-note" style="color:var(--green)">↑ +16,8% Nis'e göre</div></div>
-      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">463</div><div class="hero-kpi-note" style="color:var(--green)">↑ +20,3%</div></div>
-      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">637</div><div class="hero-kpi-note" style="color:var(--green)">↑ +8,5%</div></div>
-      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">559</div><div class="hero-kpi-note" style="color:var(--green)">↑ +6,3%</div></div>
-      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">32 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-note" style="color:var(--green)">↑ +18,5%</div></div>
+      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--may)">487</div><div class="hero-kpi-note" style="color:var(--green)">↑ +16,8% Nis'e göre</div><div class="hero-kpi-desc" data-i18n="d_activeUsers">(Sitede tıklama, kaydırma veya form gibi gerçek işlem yapan kişi)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">463</div><div class="hero-kpi-note" style="color:var(--green)">↑ +20,3%</div><div class="hero-kpi-desc" data-i18n="d_newUsers">(Bu ay siteyi ilk kez ziyaret eden benzersiz kişi)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">637</div><div class="hero-kpi-note" style="color:var(--green)">↑ +8,5%</div><div class="hero-kpi-desc" data-i18n="d_pageViews">(Toplam sayfa yükleme sayısı — aynı kişi birden fazla saysa)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">559</div><div class="hero-kpi-note" style="color:var(--green)">↑ +6,3%</div><div class="hero-kpi-desc" data-i18n="d_sessions">(Her ziyaret = 1 oturum. 30 dk hareketsizlik sonrası yeni oturum başlar)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">32 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-note" style="color:var(--green)">↑ +18,5%</div><div class="hero-kpi-desc" data-i18n="d_avgEng">(Kullanıcının sayfaya aktif baktığı ortalama süre)</div></div>
     </div>
   </div>
 
   <div class="section">
     <div class="section-title" data-i18n="sectionWeb">Web Analytics — Google Analytics 4</div>
     <div class="grid4 mb18">
-      <div class="card-sm"><div class="card-title" data-i18n="formStarts">Form Başlatma</div><div class="card-value">16</div><span class="card-delta up">↑ Nis 13</span></div>
-      <div class="card-sm"><div class="card-title" data-i18n="scrollEvents">Scroll Etkinliği</div><div class="card-value">126</div><span class="card-delta up">↑ +53,7%</span></div>
-      <div class="card-sm"><div class="card-title" data-i18n="thankYouPage">Thank-You</div><div class="card-value">11</div><div class="text-xs" data-i18n="views">görüntüleme</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="card-value">32 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Form Başlatma <i class="ti">i</i><span class="tb"><strong>Form Başlatma</strong>Ziyaretçinin iletişim/talep formunu doldurmaya başladığı an. Tamamlanmayan formları da kapsar — gerçek ilgi sinyali.</span></span></div>
+        <div class="card-value">16</div><span class="card-delta up">↑ Nis 13</span>
+      </div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Scroll Etkinliği <i class="ti">i</i><span class="tb"><strong>Scroll Etkinliği</strong>Sayfayı %90 oranında aşağı kaydıran kullanıcı sayısı. Yüksek scroll = içeriği baştan sona okuyan gerçek ilgili ziyaretçi.</span></span></div>
+        <div class="card-value">126</div><span class="card-delta up">↑ +53,7%</span>
+      </div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Thank-You Sayfası <i class="ti">i</i><span class="tb"><strong>Thank-You Sayfası</strong>Formu başarıyla tamamlayan ziyaretçinin yönlendirildiği teşekkür sayfası. Her görüntüleme = 1 tamamlanmış form = 1 potansiyel müşteri (lead).</span></span></div>
+        <div class="card-value">11</div><div class="text-xs">görüntüleme</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title"><span class="tip">Ort. Etkileşim <i class="ti">i</i><span class="tb"><strong>Ortalama Etkileşim Süresi</strong>Kullanıcıların sayfada aktif olarak geçirdiği ortalama süre. Sekmede açık bırakmak değil, gerçekten sayfaya baktığı an sayılır.</span></span></div>
+        <div class="card-value">32 <span style="font-size:14px">sn</span></div>
+      </div>
     </div>
     <div class="grid2">
       <div class="card">
         <div class="card-title mb16" data-i18n="trafficChannels">Trafik Kanalları</div>
-        <div class="traffic-item"><div class="traffic-name">Direct</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:36%;background:var(--blue)"></div></div><div class="traffic-num">206</div><div class="traffic-pct">%36,4</div></div>
-        <div class="traffic-item"><div class="traffic-name">Referral</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:28%;background:var(--gold)"></div></div><div class="traffic-num">159</div><div class="traffic-pct">%28,1</div></div>
-        <div class="traffic-item"><div class="traffic-name">Organic Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:15%;background:var(--green)"></div></div><div class="traffic-num">85</div><div class="traffic-pct">%15,0</div></div>
-        <div class="traffic-item"><div class="traffic-name">Organic Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:11%;background:var(--purple)"></div></div><div class="traffic-num">60</div><div class="traffic-pct">%10,6</div></div>
-        <div class="traffic-item"><div class="traffic-name">Paid Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--red)"></div></div><div class="traffic-num">40</div><div class="traffic-pct">%7,1</div></div>
-        <div class="traffic-item"><div class="traffic-name">Paid Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">2</div><div class="traffic-pct">%0,4</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Direct <i class="ti">i</i><span class="tb"><strong>Direct (Doğrudan)</strong>URL'yi tarayıcıya doğrudan yazan, yer iminden veya kayıtsız kaynaktan gelen ziyaretçiler. Genellikle marka bilinirliği yüksek kitledir.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:36%;background:var(--blue)"></div></div><div class="traffic-num">206</div><div class="traffic-pct">%36,4</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Referral <i class="ti">i</i><span class="tb"><strong>Referral (Yönlendirme)</strong>Başka bir web sitesindeki link üzerinden gelen trafik. Haber siteleri, iş ortakları, emlak portalları gibi harici kaynaklardan gelir.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:28%;background:var(--gold)"></div></div><div class="traffic-num">159</div><div class="traffic-pct">%28,1</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Organic Search <i class="ti">i</i><span class="tb"><strong>Organic Search (Organik Arama)</strong>Google, Bing gibi arama motorlarında reklam vermeden, SEO sayesinde üst sıralara çıkarak gelen ücretsiz trafik.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:15%;background:var(--green)"></div></div><div class="traffic-num">85</div><div class="traffic-pct">%15,0</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Organic Social <i class="ti">i</i><span class="tb"><strong>Organic Social (Organik Sosyal)</strong>Instagram, Facebook gibi sosyal medya paylaşımlarından reklam harcaması yapmadan gelen trafik. Post, story veya profil linkinden gelir.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:11%;background:var(--purple)"></div></div><div class="traffic-num">60</div><div class="traffic-pct">%10,6</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Paid Social <i class="ti">i</i><span class="tb"><strong>Paid Social (Ücretli Sosyal)</strong>Meta (Facebook/Instagram) reklamlarına tıklayarak gelen ziyaretçiler. Her tıklama için reklam bütçesinden ödeme yapılır.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--red)"></div></div><div class="traffic-num">40</div><div class="traffic-pct">%7,1</div></div>
+        <div class="traffic-item"><div class="traffic-name"><span class="tip">Paid Search <i class="ti">i</i><span class="tb"><strong>Paid Search (Ücretli Arama)</strong>Google Ads gibi arama motoru reklamlarına tıklayarak gelen ziyaretçiler. Belirli anahtar kelimeleri arayanları hedefler.</span></span></div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">2</div><div class="traffic-pct">%0,4</div></div>
       </div>
       <div class="card">
         <div class="card-title mb16" data-i18n="countryDist">Ülke Dağılımı</div>
@@ -440,11 +488,11 @@
       </div>
     </div>
     <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
-      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--jun)">272</div><div class="hero-kpi-note" data-i18n="partialMonth">19 günlük veri</div></div>
-      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">245</div></div>
-      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">339</div></div>
-      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">~299</div></div>
-      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">37 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-note" style="color:var(--green)">↑ En Yüksek</div></div>
+      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--jun)">272</div><div class="hero-kpi-note" data-i18n="partialMonth">19 günlük veri</div><div class="hero-kpi-desc" data-i18n="d_activeUsers">(Sitede tıklama, kaydırma veya form gibi gerçek işlem yapan kişi)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">245</div><div class="hero-kpi-desc" data-i18n="d_newUsers">(Bu ay siteyi ilk kez ziyaret eden benzersiz kişi)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">339</div><div class="hero-kpi-desc" data-i18n="d_pageViews">(Toplam sayfa yükleme sayısı — aynı kişi birden fazla saysa)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">~299</div><div class="hero-kpi-desc" data-i18n="d_sessions">(Her ziyaret = 1 oturum. 30 dk hareketsizlik sonrası yeni oturum başlar)</div></div>
+      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">37 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-note" style="color:var(--green)">↑ En Yüksek</div><div class="hero-kpi-desc" data-i18n="d_avgEng">(Kullanıcının sayfaya aktif baktığı ortalama süre)</div></div>
     </div>
   </div>
 
@@ -564,34 +612,72 @@
   <div class="section">
     <div class="section-title">Meta Ads — <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span> &nbsp;(1 Nis – 19 Haz 2026)</div>
     <div class="grid4 mb18">
-      <div class="card-sm"><div class="card-title" data-i18n="totalLeads">Toplam Lead</div><div class="card-value" style="color:var(--gold)">200</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="totalSpend">Toplam Harcama</div><div class="card-value">₺55.4K</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="totalReach">Toplam Erişim</div><div class="card-value">211K</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="profileVisits">Profil Ziyareti</div><div class="card-value">1.290</div></div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="totalLeads">Toplam Lead</div>
+        <div class="card-value" style="color:var(--gold)">200</div>
+        <div class="card-desc" data-i18n="d_lead">(İletişim bilgisi bırakarak ilgi gösteren potansiyel müşteri)</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="totalSpend">Toplam Harcama</div>
+        <div class="card-value">₺55.4K</div>
+        <div class="usd-note">≈ <span>$1,193</span> <span style="font-size:9px;color:var(--text3)">(₺46.44/$)</span></div>
+        <div class="card-desc" data-i18n="d_spend">(3 aylık toplam Meta reklam bütçesi)</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="totalReach">Toplam Erişim</div>
+        <div class="card-value">211K</div>
+        <div class="card-desc" data-i18n="d_reach">(Reklamı en az 1 kez gören benzersiz kişi sayısı)</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="profileVisits">Profil Ziyareti</div>
+        <div class="card-value">1.290</div>
+        <div class="card-desc" data-i18n="d_profileVisit">(Instagram profilimize reklam üzerinden tıklayan kişi)</div>
+      </div>
+    </div>
+    <!-- Ad row header -->
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:10px;padding:4px 18px 8px;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);">
+      <div data-i18n="adCamp">Kampanya</div>
+      <div style="text-align:center"><span data-i18n="lead">Lead</span><br><span style="font-size:8px;font-style:italic;text-transform:none" data-i18n="d_leadShort">(potansiyel müşteri)</span></div>
+      <div style="text-align:center"><span data-i18n="reach">Erişim</span><br><span style="font-size:8px;font-style:italic;text-transform:none" data-i18n="d_reachShort">(gören kişi)</span></div>
+      <div style="text-align:center"><span data-i18n="spend">Harcama</span><br><span style="font-size:8px;font-style:italic;text-transform:none" data-i18n="d_spendShort">(reklam bütçesi)</span></div>
+      <div style="text-align:center">CPL<br><span style="font-size:8px;font-style:italic;text-transform:none" data-i18n="d_cpl">(1 lead maliyeti)</span></div>
+      <div style="text-align:center">CTR<br><span style="font-size:8px;font-style:italic;text-transform:none" data-i18n="d_ctr">(tıklama oranı)</span></div>
     </div>
     <div class="ad-row" style="background:rgba(96,165,250,0.05);border-color:rgba(96,165,250,0.2)">
-      <div><div class="ad-name">Desire CIS Ads B2C</div><span class="ad-badge b2c">B2C · <span data-i18n="active">AKTİF</span></span></div>
-      <div class="ad-m"><div class="ad-mv" style="color:var(--gold)">92</div><div class="ad-mk" data-i18n="lead">Lead</div></div>
-      <div class="ad-m"><div class="ad-mv">96.472</div><div class="ad-mk" data-i18n="reach">Erişim</div></div>
-      <div class="ad-m"><div class="ad-mv">₺27.586</div><div class="ad-mk" data-i18n="spend">Harcama</div></div>
-      <div class="ad-m"><div class="ad-mv">₺299,85</div><div class="ad-mk">CPL</div></div>
-      <div class="ad-m"><div class="ad-mv">%0,89</div><div class="ad-mk">CTR</div></div>
+      <div>
+        <div class="ad-name">Desire CIS Ads B2C</div>
+        <span class="ad-badge b2c">B2C · <span data-i18n="active">AKTİF</span></span>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px" data-i18n="d_b2c">(Bireysel alıcıya — ev almak isteyen kişi)</div>
+      </div>
+      <div class="ad-m"><div class="ad-mv" style="color:var(--gold)">92</div></div>
+      <div class="ad-m"><div class="ad-mv">96.472</div></div>
+      <div class="ad-m"><div class="ad-mv">₺27.586</div><div style="font-size:9px;color:#6EE7B7">≈ $594</div></div>
+      <div class="ad-m"><div class="ad-mv">₺299,85</div><div style="font-size:9px;color:#6EE7B7">≈ $6,46</div><div class="ad-mk-desc" data-i18n="d_cplNote">(1 lead için ödenen)</div></div>
+      <div class="ad-m"><div class="ad-mv">%0,89</div><div class="ad-mk-desc" data-i18n="d_ctrNote">(reklamı görenin tıklama %'si)</div></div>
     </div>
     <div class="ad-row" style="background:rgba(167,139,250,0.05);border-color:rgba(167,139,250,0.2)">
-      <div><div class="ad-name">Desire CIS Ads B2B</div><span class="ad-badge b2b">B2B · <span data-i18n="active">AKTİF</span></span></div>
-      <div class="ad-m"><div class="ad-mv" style="color:var(--gold)">108</div><div class="ad-mk" data-i18n="lead">Lead</div></div>
-      <div class="ad-m"><div class="ad-mv">97.115</div><div class="ad-mk" data-i18n="reach">Erişim</div></div>
-      <div class="ad-m"><div class="ad-mv">₺25.795</div><div class="ad-mk" data-i18n="spend">Harcama</div></div>
-      <div class="ad-m"><div class="ad-mv">₺238,85</div><div class="ad-mk">CPL</div></div>
-      <div class="ad-m"><div class="ad-mv">%0,79</div><div class="ad-mk">CTR</div></div>
+      <div>
+        <div class="ad-name">Desire CIS Ads B2B</div>
+        <span class="ad-badge b2b">B2B · <span data-i18n="active">AKTİF</span></span>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px" data-i18n="d_b2b">(Kurumsal yatırımcıya — şirket veya fon)</div>
+      </div>
+      <div class="ad-m"><div class="ad-mv" style="color:var(--gold)">108</div></div>
+      <div class="ad-m"><div class="ad-mv">97.115</div></div>
+      <div class="ad-m"><div class="ad-mv">₺25.795</div><div style="font-size:9px;color:#6EE7B7">≈ $555</div></div>
+      <div class="ad-m"><div class="ad-mv">₺238,85</div><div style="font-size:9px;color:#6EE7B7">≈ $5,14</div><div class="ad-mk-desc" data-i18n="d_cplNote">(1 lead için ödenen)</div></div>
+      <div class="ad-m"><div class="ad-mv">%0,79</div><div class="ad-mk-desc" data-i18n="d_ctrNote">(reklamı görenin tıklama %'si)</div></div>
     </div>
     <div class="ad-row" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.15)">
-      <div><div class="ad-name">Profil Visit Campaign</div><span class="ad-badge pfv"><span data-i18n="profile">PROFİL</span> · <span data-i18n="active">AKTİF</span></span></div>
-      <div class="ad-m"><div class="ad-mv" style="color:var(--green)">1.290</div><div class="ad-mk" data-i18n="profileVisit">Profil Ziyaret</div></div>
-      <div class="ad-m"><div class="ad-mv">18.091</div><div class="ad-mk" data-i18n="reach">Erişim</div></div>
-      <div class="ad-m"><div class="ad-mv">₺2.062</div><div class="ad-mk" data-i18n="spend">Harcama</div></div>
-      <div class="ad-m"><div class="ad-mv">₺1,60</div><div class="ad-mk">CPV</div></div>
-      <div class="ad-m"><div class="ad-mv">%4,48</div><div class="ad-mk">CTR</div></div>
+      <div>
+        <div class="ad-name">Profil Visit Campaign</div>
+        <span class="ad-badge pfv"><span data-i18n="profile">PROFİL</span> · <span data-i18n="active">AKTİF</span></span>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px" data-i18n="d_pfv">(Instagram profilimize ziyaretçi çeken kampanya)</div>
+      </div>
+      <div class="ad-m"><div class="ad-mv" style="color:var(--green)">1.290</div><div class="ad-mk-desc" data-i18n="d_profileVisit">(profil ziyareti)</div></div>
+      <div class="ad-m"><div class="ad-mv">18.091</div></div>
+      <div class="ad-m"><div class="ad-mv">₺2.062</div><div style="font-size:9px;color:#6EE7B7">≈ $44</div></div>
+      <div class="ad-m"><div class="ad-mv">₺1,60</div><div style="font-size:9px;color:#6EE7B7">≈ $0,03</div><div class="ad-mk-desc" data-i18n="d_cpv">(CPV: 1 profil ziyareti maliyeti)</div></div>
+      <div class="ad-m"><div class="ad-mv">%4,48</div><div class="ad-mk-desc" data-i18n="d_ctrNote">(reklamı görenin tıklama %'si)</div></div>
     </div>
     <div class="card" style="margin-top:18px">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
@@ -605,10 +691,26 @@
   <div class="section">
     <div class="section-title">Google Search Console — <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
     <div class="grid4 mb18">
-      <div class="card-sm"><div class="card-title" data-i18n="totalClicks">Toplam Tıklama</div><div class="card-value">70</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="totalImpressions">Toplam Gösterim</div><div class="card-value">2.410</div></div>
-      <div class="card-sm"><div class="card-title">CTR</div><div class="card-value">%2,9</div></div>
-      <div class="card-sm"><div class="card-title" data-i18n="avgPosition">Ort. Sıralama</div><div class="card-value">11,5</div></div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="totalClicks">Toplam Tıklama</div>
+        <div class="card-value">70</div>
+        <div class="card-desc" data-i18n="d_clicks">(Google arama sonuçlarında sitemize tıklanma sayısı)</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="totalImpressions">Toplam Gösterim</div>
+        <div class="card-value">2.410</div>
+        <div class="card-desc" data-i18n="d_impressions">(Sitemizin Google'da arama sonuçlarında kaç kez göründüğü)</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title">CTR <span style="font-size:9px;color:var(--text3)">(Click-Through Rate)</span></div>
+        <div class="card-value">%2,9</div>
+        <div class="card-desc" data-i18n="d_ctrSeo">(Sitemizi gören 100 kişiden 2,9'u tıkladı — %3+ iyi kabul edilir)</div>
+      </div>
+      <div class="card-sm">
+        <div class="card-title" data-i18n="avgPosition">Ort. Sıralama</div>
+        <div class="card-value">11,5</div>
+        <div class="card-desc" data-i18n="d_position">(Google'da ortalama sıra — 1 = ilk sıra, 11 = 2. sayfa başı)</div>
+      </div>
     </div>
     <div class="qhrow"><div></div><div class="qh" style="text-align:left" data-i18n="query">Sorgu</div><div class="qh" data-i18n="clicks">Tıklama</div><div class="qh" data-i18n="impressions">Gösterim</div><div class="qh">CTR</div><div class="qh" data-i18n="avgPos">Ort. Konum</div></div>
     <div class="qrow"><div class="qnum">1</div><div class="qterm">desire antalya</div><div class="qmet">64</div><div class="qmet">148</div><div class="qmet" style="color:var(--green)">%43,2</div><div class="qmet">1,30</div></div>
@@ -623,8 +725,14 @@
     <div class="grid4">
       <div class="manager-card">
         <div class="manager-name"><div class="manager-avatar">E</div>Emre</div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">66 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:66%"></div></div></div>
-        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">8 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:40%"></div></div></div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Dokunuş <span style="font-weight:400;font-size:9px;color:var(--text3)" data-i18n="d_touchShort">(arama/mesaj/e-posta)</span></span><span class="prog-val">66 / 100</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-gold" style="width:66%"></div></div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-header"><span class="prog-label">Toplantı <span style="font-weight:400;font-size:9px;color:var(--text3)" data-i18n="d_meetShort">(yüz yüze/video)</span></span><span class="prog-val">8 / 20</span></div>
+          <div class="prog-bg"><div class="prog-fill fill-blue" style="width:40%"></div></div>
+        </div>
         <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="emreAvg">Ort. 65.5 dokunuş/hafta</div>
       </div>
       <div class="manager-card">
@@ -712,6 +820,34 @@ const i18n = {
     monthlyComparison:'Aylık Metrik Karşılaştırması',
     igTrend:'Instagram & Facebook Görüntüleme Trendi',
     footerReport:'Dijital Performans Raporu', footerDate:'Hazırlanma: 19 Haziran 2026',
+    // Descriptions
+    d_activeUsers:'(Sitede tıklama, kaydırma veya form gibi gerçek işlem yapan kişi)',
+    d_newUsers:'(Bu ay siteyi ilk kez ziyaret eden benzersiz kişi)',
+    d_pageViews:'(Toplam sayfa yükleme sayısı — aynı kişi birden fazla saysa)',
+    d_sessions:'(Her ziyaret = 1 oturum. 30 dk hareketsizlik sonrası yeni oturum başlar)',
+    d_avgEng:'(Kullanıcının sayfaya aktif baktığı ortalama süre)',
+    d_lead:'(İletişim bilgisi bırakarak ilgi gösteren potansiyel müşteri)',
+    d_spend:'(3 aylık toplam Meta reklam bütçesi)',
+    d_reach:'(Reklamı en az 1 kez gören benzersiz kişi sayısı)',
+    d_profileVisit:'(Instagram profilimize reklam üzerinden tıklayan kişi)',
+    d_leadShort:'(potansiyel müşteri)',
+    d_reachShort:'(gören kişi)',
+    d_spendShort:'(reklam bütçesi)',
+    d_cpl:'(1 lead maliyeti)',
+    d_ctr:'(tıklama oranı)',
+    d_b2c:'(Bireysel alıcıya — ev almak isteyen kişi)',
+    d_b2b:'(Kurumsal yatırımcıya — şirket veya fon)',
+    d_pfv:'(Instagram profilimize ziyaretçi çeken kampanya)',
+    d_cpv:'(CPV: 1 profil ziyareti maliyeti)',
+    d_cplNote:'(1 lead için ödenen)',
+    d_ctrNote:'(reklamı görenin tıklama %\'si)',
+    d_clicks:'(Google arama sonuçlarında sitemize tıklanma sayısı)',
+    d_impressions:'(Sitemizin Google\'da arama sonuçlarında kaç kez göründüğü)',
+    d_ctrSeo:'(Sitemizi gören 100 kişiden 2,9\'u tıkladı — %3+ iyi kabul edilir)',
+    d_position:'(Google\'da ortalama sıra — 1 = ilk sıra, 11 = 2. sayfa başı)',
+    d_touchShort:'(arama/mesaj/e-posta)',
+    d_meetShort:'(yüz yüze/video)',
+    adCamp:'Kampanya',
   },
   en:{
     apr:'April', jun:'June', live:'LIVE', aprFull:'April 2026', mayFull:'May 2026',
@@ -751,6 +887,33 @@ const i18n = {
     monthlyComparison:'Monthly Metric Comparison',
     igTrend:'Instagram & Facebook Views Trend',
     footerReport:'Digital Performance Report', footerDate:'Prepared: 19 June 2026',
+    d_activeUsers:'(Users who performed real actions: clicks, scrolls or forms)',
+    d_newUsers:'(Unique people visiting the site for the first time this month)',
+    d_pageViews:'(Total page loads — same person counted multiple times)',
+    d_sessions:'(Each visit = 1 session. New session starts after 30 min inactivity)',
+    d_avgEng:'(Average time the user was actively looking at the page)',
+    d_lead:'(Potential customer who left contact info showing interest)',
+    d_spend:'(Total Meta ad budget over 3 months)',
+    d_reach:'(Unique people who saw the ad at least once)',
+    d_profileVisit:'(People who clicked our Instagram profile via ad)',
+    d_leadShort:'(potential customer)',
+    d_reachShort:'(people reached)',
+    d_spendShort:'(ad budget)',
+    d_cpl:'(cost per lead)',
+    d_ctr:'(click rate)',
+    d_b2c:'(Individual buyer — person wanting to purchase a home)',
+    d_b2b:'(Corporate investor — company or fund)',
+    d_pfv:'(Campaign driving visitors to our Instagram profile)',
+    d_cpv:'(CPV: cost per profile visit)',
+    d_cplNote:'(paid per 1 lead)',
+    d_ctrNote:'(% of viewers who clicked)',
+    d_clicks:'(Clicks to our site from Google search results)',
+    d_impressions:'(How many times our site appeared in Google search results)',
+    d_ctrSeo:'(2.9 out of 100 who saw us clicked — 3%+ is considered good)',
+    d_position:'(Average Google rank — 1 = top spot, 11 = top of page 2)',
+    d_touchShort:'(call/message/email)',
+    d_meetShort:'(face-to-face/video)',
+    adCamp:'Campaign',
   },
   uk:{
     apr:'Квітень', jun:'Червень', live:'АКТУАЛЬНО', aprFull:'Квітень 2026', mayFull:'Травень 2026',
@@ -790,6 +953,33 @@ const i18n = {
     monthlyComparison:'Щомісячне порівняння метрик',
     igTrend:'Тренд переглядів Instagram & Facebook',
     footerReport:'Звіт про цифрову ефективність', footerDate:'Підготовлено: 19 червня 2026',
+    d_activeUsers:'(Користувачі, які виконували реальні дії: кліки, прокрутка або форми)',
+    d_newUsers:'(Унікальні особи, які вперше відвідали сайт цього місяця)',
+    d_pageViews:'(Загальна кількість завантажень сторінок — одна людина рахується кілька разів)',
+    d_sessions:'(Кожен візит = 1 сеанс. Новий сеанс починається після 30 хв неактивності)',
+    d_avgEng:'(Середній час активного перегляду сторінки користувачем)',
+    d_lead:'(Потенційний клієнт, який залишив контактні дані)',
+    d_spend:'(Загальний бюджет реклами Meta за 3 місяці)',
+    d_reach:'(Унікальні особи, які побачили рекламу хоча б раз)',
+    d_profileVisit:'(Люди, які перейшли на наш профіль Instagram через рекламу)',
+    d_leadShort:'(потенційний клієнт)',
+    d_reachShort:'(охоплені особи)',
+    d_spendShort:'(рекламний бюджет)',
+    d_cpl:'(вартість 1 ліда)',
+    d_ctr:'(рівень кліків)',
+    d_b2c:'(Індивідуальний покупець — людина, яка хоче придбати житло)',
+    d_b2b:'(Корпоративний інвестор — компанія або фонд)',
+    d_pfv:'(Кампанія, яка залучає відвідувачів до нашого профілю Instagram)',
+    d_cpv:'(CPV: вартість одного відвідування профілю)',
+    d_cplNote:'(сплачено за 1 лід)',
+    d_ctrNote:'(% глядачів, які клікнули)',
+    d_clicks:'(Кліки на наш сайт з результатів пошуку Google)',
+    d_impressions:'(Скільки разів наш сайт з\'являвся в результатах пошуку Google)',
+    d_ctrSeo:'(2,9 з 100, хто нас бачив, клікнули — 3%+ вважається хорошим)',
+    d_position:'(Середній рейтинг Google — 1 = перше місце, 11 = початок 2-ї сторінки)',
+    d_touchShort:'(дзвінок/повідомлення/e-mail)',
+    d_meetShort:'(особисто/відео)',
+    adCamp:'Кампанія',
   }
 };
 let currentLang='tr', currentMonth='apr';
