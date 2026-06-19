@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desire Antalya — Q2 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg:#080C14; --bg2:#0D1320; --card:#141B2D; --card2:#1A2235;
+    --border:rgba(255,255,255,0.06);
+    --gold:#C9A96E; --gold2:#E8C98A; --gold3:rgba(201,169,110,0.12);
+    --text:#F0EDE8; --text2:#8A94A6; --text3:#5A6478;
+    --green:#4ADE80; --green2:rgba(74,222,128,0.10);
+    --red:#F87171; --red2:rgba(248,113,113,0.10);
+    --blue:#60A5FA; --blue2:rgba(96,165,250,0.10);
+    --purple:#A78BFA; --purple2:rgba(167,139,250,0.10);
+    --apr:#60A5FA; --may:#C9A96E; --jun:#A78BFA;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.6;}
+
+  /* ── HEADER ── */
+  .header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+  .header-top{padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo-wrap{display:flex;align-items:center;gap:12px;}
+  .logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:#080C14;}
+  .logo-text{display:flex;flex-direction:column;}
+  .logo-name{font-size:15px;font-weight:700;}
+  .logo-sub{font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;}
+  .header-right{display:flex;align-items:center;gap:14px;}
+  .report-period{font-size:11px;color:var(--text3);letter-spacing:.3px;}
+  .badge-live{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);color:var(--green);padding:4px 10px;border-radius:16px;font-size:10px;font-weight:700;letter-spacing:.5px;}
+
+  /* LANG */
+  .lang-switcher{display:flex;gap:3px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:9px;padding:3px;}
+  .lang-btn{padding:4px 10px;border-radius:6px;border:none;background:transparent;color:var(--text2);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .2s;}
+  .lang-btn:hover{color:var(--text);}
+  .lang-btn.active{background:var(--gold3);color:var(--gold2);}
+
+  /* MONTH NAV */
+  .month-nav{border-top:1px solid var(--border);padding:0 48px;display:flex;align-items:center;gap:0;}
+  .month-tab{padding:12px 24px;border:none;background:transparent;color:var(--text3);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.5px;position:relative;transition:all .2s;display:flex;align-items:center;gap:8px;}
+  .month-tab:hover{color:var(--text2);}
+  .month-tab.active{color:var(--text);}
+  .month-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;border-radius:2px 2px 0 0;}
+  .month-tab[data-month="apr"].active{color:var(--apr);}
+  .month-tab[data-month="apr"].active::after{background:var(--apr);}
+  .month-tab[data-month="may"].active{color:var(--may);}
+  .month-tab[data-month="may"].active::after{background:var(--may);}
+  .month-tab[data-month="jun"].active{color:var(--jun);}
+  .month-tab[data-month="jun"].active::after{background:var(--jun);}
+  .month-dot{width:6px;height:6px;border-radius:50%;}
+  .dot-apr{background:var(--apr);} .dot-may{background:var(--may);} .dot-jun{background:var(--jun);}
+  .month-divider{width:1px;height:20px;background:var(--border);margin:0 4px;}
+  .label-3mo{font-size:9px;background:var(--gold3);color:var(--gold);border:1px solid rgba(201,169,110,0.2);padding:2px 6px;border-radius:8px;font-weight:700;letter-spacing:.5px;white-space:nowrap;}
+
+  /* LAYOUT */
+  .main{padding:36px 48px 80px;max-width:1400px;margin:0 auto;}
+  .section-title{font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+  .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+  .section{margin-bottom:44px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;}
+  .card-sm{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:16px 18px;}
+  .card-title{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:4px;}
+  .card-value{font-size:28px;font-weight:700;color:var(--text);line-height:1.1;}
+  .card-value.sm{font-size:20px;}
+  .card-delta{font-size:11px;margin-top:5px;font-weight:600;display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:16px;}
+  .up{color:var(--green);background:var(--green2);} .down{color:var(--red);background:var(--red2);} .neutral{color:var(--text2);background:rgba(255,255,255,0.06);}
+  .mb16{margin-bottom:16px;} .mb18{margin-bottom:18px;}
+  .text-gold{color:var(--gold);} .text-xs{font-size:11px;color:var(--text2);}
+
+  /* CHART */
+  .chart-wrap{position:relative;height:220px;}
+  .chart-wrap.tall{height:250px;}
+  .chart-wrap.short{height:160px;}
+
+  /* METRIC TABLE */
+  .metric-table{width:100%;}
+  .metric-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);}
+  .metric-row:last-child{border-bottom:none;}
+  .metric-key{font-size:12px;color:var(--text2);}
+  .metric-val{font-size:13px;font-weight:600;color:var(--text);}
+
+  /* TRAFFIC */
+  .traffic-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+  .traffic-item:last-child{border-bottom:none;}
+  .traffic-bar-wrap{flex:1;background:rgba(255,255,255,0.05);border-radius:3px;height:5px;overflow:hidden;}
+  .traffic-bar{height:100%;border-radius:3px;}
+  .traffic-name{width:120px;font-size:12px;color:var(--text2);}
+  .traffic-num{width:36px;font-size:12px;font-weight:600;color:var(--text);text-align:right;}
+  .traffic-pct{width:36px;font-size:11px;color:var(--text3);text-align:right;}
+
+  /* COUNTRY */
+  .country-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+  .country-item:last-child{border-bottom:none;}
+  .flag{font-size:17px;line-height:1;}
+  .country-name{flex:1;font-size:12px;color:var(--text2);}
+  .country-bar-wrap{width:80px;background:rgba(255,255,255,0.05);border-radius:3px;height:4px;}
+  .country-bar{height:100%;border-radius:3px;background:var(--gold);}
+  .country-num{width:28px;text-align:right;font-size:12px;font-weight:600;color:var(--text);}
+
+  /* ADS */
+  .ad-row{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:16px 18px;margin-bottom:8px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:10px;align-items:center;}
+  .ad-name{font-size:13px;font-weight:600;color:var(--text);}
+  .ad-badge{font-size:10px;padding:2px 8px;border-radius:16px;display:inline-block;margin-top:3px;}
+  .b2c{background:var(--blue2);color:var(--blue);} .b2b{background:var(--purple2);color:var(--purple);} .pfv{background:var(--green2);color:var(--green);}
+  .ad-m{text-align:center;}
+  .ad-mv{font-size:15px;font-weight:700;color:var(--text);}
+  .ad-mk{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+  /* MANAGER */
+  .manager-card{background:var(--card2);border:1px solid var(--border);border-radius:13px;padding:18px;}
+  .manager-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .manager-avatar{width:30px;height:30px;background:var(--gold3);border:1px solid rgba(201,169,110,0.3);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gold);}
+  .prog-wrap{margin-bottom:12px;}
+  .prog-header{display:flex;justify-content:space-between;margin-bottom:5px;}
+  .prog-label{font-size:11px;color:var(--text3);}
+  .prog-val{font-size:11px;font-weight:600;color:var(--text);}
+  .prog-bg{background:rgba(255,255,255,0.06);border-radius:3px;height:5px;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:3px;}
+  .fill-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .fill-blue{background:linear-gradient(90deg,var(--blue),#93C5FD);}
+
+  /* SOCIAL */
+  .social-platform{background:var(--card2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .social-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+  .social-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;}
+  .ig-icon{background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737);}
+  .fb-icon{background:#1877F2;color:#fff;font-weight:700;font-size:15px;}
+  .social-platform-name{font-size:13px;font-weight:600;}
+  .social-body{padding:14px 18px;}
+  .social-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;}
+  .sv{font-size:15px;font-weight:700;color:var(--text);}
+  .sk{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+  /* QUERY TABLE */
+  .qrow{display:grid;grid-template-columns:22px 2fr 1fr 1fr 1fr 1fr;gap:10px;align-items:center;padding:10px 14px;border-radius:9px;margin-bottom:5px;background:var(--card2);border:1px solid var(--border);}
+  .qnum{font-size:11px;color:var(--text3);font-weight:600;}
+  .qterm{font-size:12px;color:var(--text);font-weight:500;}
+  .qmet{text-align:right;font-size:12px;color:var(--text);font-weight:600;}
+  .qhrow{display:grid;grid-template-columns:22px 2fr 1fr 1fr 1fr 1fr;gap:10px;padding:5px 14px;margin-bottom:3px;}
+  .qh{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);text-align:right;}
+  .qh:nth-child(2){text-align:left;}
+
+  /* FOOTER */
+  .footer{border-top:1px solid var(--border);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text3);font-size:11px;}
+
+  /* MONTH SECTIONS */
+  .month-view{display:none;}
+  .month-view.visible{display:block;}
+
+  /* HERO */
+  .hero{border-radius:18px;padding:32px 36px;margin-bottom:40px;position:relative;overflow:hidden;}
+  .hero-apr{background:linear-gradient(135deg,var(--card) 0%,rgba(96,165,250,0.07) 100%);border:1px solid rgba(96,165,250,0.15);}
+  .hero-may{background:linear-gradient(135deg,var(--card) 0%,rgba(201,169,110,0.08) 100%);border:1px solid rgba(201,169,110,0.18);}
+  .hero-jun{background:linear-gradient(135deg,var(--card) 0%,rgba(167,139,250,0.07) 100%);border:1px solid rgba(167,139,250,0.15);}
+  .hero-3mo{background:linear-gradient(135deg,var(--card) 0%,rgba(74,222,128,0.06) 100%);border:1px solid rgba(74,222,128,0.12);}
+  .hero-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;}
+  .hero-h{font-size:24px;font-weight:700;line-height:1.2;}
+  .hero-sub{color:var(--text2);margin-top:4px;font-size:12px;}
+  .hero-kpis{display:grid;gap:18px;}
+  .hero-kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:4px;}
+  .hero-kpi-value{font-size:24px;font-weight:700;color:var(--text);line-height:1;}
+  .hero-kpi-note{font-size:11px;color:var(--text2);margin-top:3px;}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="header-top">
+    <div class="logo-wrap">
+      <div class="logo-icon">D</div>
+      <div class="logo-text">
+        <span class="logo-name">DESIRE ANTALYA</span>
+        <span class="logo-sub">Premium Residences &amp; Hotel</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="report-period">Q2 2026 · 1 <span data-i18n="apr">Nisan</span> – 19 <span data-i18n="jun">Haziran</span></span>
+      <span class="badge-live" data-i18n="live">GÜNCEL</span>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('uk')">UK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTH NAV -->
+  <nav class="month-nav">
+    <button class="month-tab active" data-month="apr" onclick="setMonth('apr')">
+      <span class="month-dot dot-apr"></span>
+      <span data-i18n="aprFull">Nisan 2026</span>
+    </button>
+    <div class="month-divider"></div>
+    <button class="month-tab" data-month="may" onclick="setMonth('may')">
+      <span class="month-dot dot-may"></span>
+      <span data-i18n="mayFull">Mayıs 2026</span>
+    </button>
+    <div class="month-divider"></div>
+    <button class="month-tab" data-month="jun" onclick="setMonth('jun')">
+      <span class="month-dot dot-jun"></span>
+      <span data-i18n="junPartial">Haziran 1–19</span>
+    </button>
+    <div class="month-divider"></div>
+    <button class="month-tab" data-month="all" onclick="setMonth('all')">
+      <span>Q2</span>
+      <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span>
+    </button>
+  </nav>
+</header>
+
+<main class="main">
+
+<!-- ════════════════════════════════
+     NİSAN (APRIL)
+════════════════════════════════ -->
+<div class="month-view visible" id="view-apr">
+
+  <!-- Hero -->
+  <div class="hero hero-apr">
+    <div class="hero-top">
+      <div>
+        <div class="hero-h"><span style="color:var(--apr)" data-i18n="aprFull">Nisan 2026</span></div>
+        <div class="hero-sub" data-i18n="aprHeroSub">1 Nisan – 30 Nisan 2026 dönemi özeti</div>
+      </div>
+    </div>
+    <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
+      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--apr)">417</div></div>
+      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">385</div></div>
+      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">587</div></div>
+      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">526</div></div>
+      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">27 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+    </div>
+  </div>
+
+  <!-- Web Analytics - April -->
+  <div class="section">
+    <div class="section-title" data-i18n="sectionWeb">Web Analytics — Google Analytics 4</div>
+    <div class="grid4 mb18">
+      <div class="card-sm"><div class="card-title" data-i18n="formStarts">Form Başlatma</div><div class="card-value">13</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="scrollEvents">Scroll Etkinliği</div><div class="card-value">82</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="thankYouPage">Thank-You</div><div class="card-value">9</div><div class="text-xs" data-i18n="views">görüntüleme</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="card-value">27 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title mb16" data-i18n="trafficChannels">Trafik Kanalları</div>
+        <div class="traffic-item"><div class="traffic-name">Direct</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:38%;background:var(--blue)"></div></div><div class="traffic-num">208</div><div class="traffic-pct">%38,7</div></div>
+        <div class="traffic-item"><div class="traffic-name">Referral</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:31%;background:var(--gold)"></div></div><div class="traffic-num">169</div><div class="traffic-pct">%31,5</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:19%;background:var(--green)"></div></div><div class="traffic-num">105</div><div class="traffic-pct">%19,6</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--purple)"></div></div><div class="traffic-num">36</div><div class="traffic-pct">%6,7</div></div>
+        <div class="traffic-item"><div class="traffic-name">Paid Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--red)"></div></div><div class="traffic-num">3</div><div class="traffic-pct">%0,6</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Video</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">2</div><div class="traffic-pct">%0,4</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title mb16" data-i18n="countryDist">Ülke Dağılımı</div>
+        <div class="country-item"><div class="flag">🇸🇬</div><div class="country-name">Singapore</div><div class="country-bar-wrap"><div class="country-bar" style="width:100%"></div></div><div class="country-num">124</div></div>
+        <div class="country-item"><div class="flag">🇹🇷</div><div class="country-name" data-i18n="cTurkey">Türkiye</div><div class="country-bar-wrap"><div class="country-bar" style="width:56%"></div></div><div class="country-num">69</div></div>
+        <div class="country-item"><div class="flag">🇺🇸</div><div class="country-name" data-i18n="cUSA">ABD</div><div class="country-bar-wrap"><div class="country-bar" style="width:25%"></div></div><div class="country-num">31</div></div>
+        <div class="country-item"><div class="flag">🇺🇦</div><div class="country-name" data-i18n="cUkraine">Ukrayna</div><div class="country-bar-wrap"><div class="country-bar" style="width:16%"></div></div><div class="country-num">20</div></div>
+        <div class="country-item"><div class="flag">🇬🇧</div><div class="country-name" data-i18n="cUK">İngiltere</div><div class="country-bar-wrap"><div class="country-bar" style="width:11%"></div></div><div class="country-num">14</div></div>
+        <div class="country-item"><div class="flag">🇩🇪</div><div class="country-name" data-i18n="cGermany">Almanya</div><div class="country-bar-wrap"><div class="country-bar" style="width:10%"></div></div><div class="country-num">13</div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-title mb16" data-i18n="pageTraffic">Sayfa Trafiği</div>
+      <div class="traffic-item"><div class="traffic-name">/ (<span data-i18n="homepage">Ana Sayfa</span>)</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:73%;background:var(--gold)"></div></div><div class="traffic-num">428</div><div class="traffic-pct">%72,9</div></div>
+      <div class="traffic-item"><div class="traffic-name">/tr/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:16%;background:var(--blue)"></div></div><div class="traffic-num">92</div><div class="traffic-pct">%15,7</div></div>
+      <div class="traffic-item"><div class="traffic-name">/ru/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:8%;background:var(--purple)"></div></div><div class="traffic-num">45</div><div class="traffic-pct">%7,7</div></div>
+      <div class="traffic-item"><div class="traffic-name">/thank-you/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:2%;background:var(--green)"></div></div><div class="traffic-num">9</div><div class="traffic-pct">%1,5</div></div>
+      <div class="traffic-item"><div class="traffic-name">/uk/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--red)"></div></div><div class="traffic-num">6</div><div class="traffic-pct">%1,0</div></div>
+    </div>
+  </div>
+
+  <!-- Social - April -->
+  <div class="section">
+    <div class="section-title" data-i18n="sectionSocial">Sosyal Medya — Meta</div>
+    <div class="grid2">
+      <div class="social-platform">
+        <div class="social-header"><div class="social-icon ig-icon">📷</div><div><div class="social-platform-name">Instagram</div><div style="font-size:11px;color:var(--text3)">@desire.antalya</div></div></div>
+        <div class="social-body">
+          <div class="social-stats">
+            <div><div class="sv">47,7K</div><div class="sk" data-i18n="statViews">Görüntüleme</div></div>
+            <div><div class="sv">21,9K</div><div class="sk" data-i18n="statReach">Erişim</div></div>
+            <div><div class="sv">253</div><div class="sk" data-i18n="statEngagement">Etkileşim</div></div>
+          </div>
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--blue)">233</div><div class="sk" data-i18n="statLinkClicks">Link Tık</div></div>
+            <div><div class="sv" style="color:var(--green)">27</div><div class="sk" data-i18n="statFollowers">Takipçi</div></div>
+            <div><div class="sv" style="color:var(--gold)">517</div><div class="sk" data-i18n="statProfileVisit">Profil Ziyaret</div></div>
+          </div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+            <span data-i18n="organic">Organik</span>: 8.656 · <span data-i18n="fromAds">Reklamdan</span>: 38.561
+          </div>
+        </div>
+      </div>
+      <div class="social-platform">
+        <div class="social-header"><div class="social-icon fb-icon">f</div><div><div class="social-platform-name">Facebook</div><div style="font-size:11px;color:var(--text3)">DESIRE.Antalya</div></div></div>
+        <div class="social-body">
+          <div class="social-stats">
+            <div><div class="sv">1,7K</div><div class="sk" data-i18n="statViews">Görüntüleme</div></div>
+            <div><div class="sv">1,1K</div><div class="sk" data-i18n="statViewers">Görüntüleyen</div></div>
+            <div><div class="sv">9</div><div class="sk" data-i18n="statEngagement">Etkileşim</div></div>
+          </div>
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--gold)">+264%</div><div class="sk" data-i18n="statGrowth">Büyüme</div></div>
+            <div><div class="sv" style="color:var(--blue)">550</div><div class="sk" data-i18n="statVisits">Ziyaret</div></div>
+            <div><div class="sv" style="color:var(--green)">200</div><div class="sk" data-i18n="statFollowers">Takipçi</div></div>
+          </div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+            <span data-i18n="organic">Organik</span>: 510 · <span data-i18n="fromAds">Reklamdan</span>: 1.225
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     MAYIS (MAY)
+════════════════════════════════ -->
+<div class="month-view" id="view-may">
+
+  <div class="hero hero-may">
+    <div class="hero-top">
+      <div>
+        <div class="hero-h"><span style="color:var(--may)" data-i18n="mayFull">Mayıs 2026</span></div>
+        <div class="hero-sub" data-i18n="mayHeroSub">1 Mayıs – 31 Mayıs 2026 dönemi özeti</div>
+      </div>
+      <span class="card-delta up">↑ <span data-i18n="peakMonth">En Yüksek Ay</span></span>
+    </div>
+    <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
+      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--may)">487</div><div class="hero-kpi-note" style="color:var(--green)">↑ +16,8% Nis'e göre</div></div>
+      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">463</div><div class="hero-kpi-note" style="color:var(--green)">↑ +20,3%</div></div>
+      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">637</div><div class="hero-kpi-note" style="color:var(--green)">↑ +8,5%</div></div>
+      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">559</div><div class="hero-kpi-note" style="color:var(--green)">↑ +6,3%</div></div>
+      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">32 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-note" style="color:var(--green)">↑ +18,5%</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" data-i18n="sectionWeb">Web Analytics — Google Analytics 4</div>
+    <div class="grid4 mb18">
+      <div class="card-sm"><div class="card-title" data-i18n="formStarts">Form Başlatma</div><div class="card-value">16</div><span class="card-delta up">↑ Nis 13</span></div>
+      <div class="card-sm"><div class="card-title" data-i18n="scrollEvents">Scroll Etkinliği</div><div class="card-value">126</div><span class="card-delta up">↑ +53,7%</span></div>
+      <div class="card-sm"><div class="card-title" data-i18n="thankYouPage">Thank-You</div><div class="card-value">11</div><div class="text-xs" data-i18n="views">görüntüleme</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="card-value">32 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title mb16" data-i18n="trafficChannels">Trafik Kanalları</div>
+        <div class="traffic-item"><div class="traffic-name">Direct</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:36%;background:var(--blue)"></div></div><div class="traffic-num">206</div><div class="traffic-pct">%36,4</div></div>
+        <div class="traffic-item"><div class="traffic-name">Referral</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:28%;background:var(--gold)"></div></div><div class="traffic-num">159</div><div class="traffic-pct">%28,1</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:15%;background:var(--green)"></div></div><div class="traffic-num">85</div><div class="traffic-pct">%15,0</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:11%;background:var(--purple)"></div></div><div class="traffic-num">60</div><div class="traffic-pct">%10,6</div></div>
+        <div class="traffic-item"><div class="traffic-name">Paid Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--red)"></div></div><div class="traffic-num">40</div><div class="traffic-pct">%7,1</div></div>
+        <div class="traffic-item"><div class="traffic-name">Paid Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">2</div><div class="traffic-pct">%0,4</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title mb16" data-i18n="countryDist">Ülke Dağılımı</div>
+        <div class="country-item"><div class="flag">🇸🇬</div><div class="country-name">Singapore</div><div class="country-bar-wrap"><div class="country-bar" style="width:100%"></div></div><div class="country-num">117</div></div>
+        <div class="country-item"><div class="flag">🇹🇷</div><div class="country-name" data-i18n="cTurkey">Türkiye</div><div class="country-bar-wrap"><div class="country-bar" style="width:53%"></div></div><div class="country-num">62</div></div>
+        <div class="country-item"><div class="flag">🇰🇬</div><div class="country-name" data-i18n="cKyrgyzstan">Kırgızistan</div><div class="country-bar-wrap"><div class="country-bar" style="width:50%"></div></div><div class="country-num">59</div></div>
+        <div class="country-item"><div class="flag">🇬🇧</div><div class="country-name" data-i18n="cUK">İngiltere</div><div class="country-bar-wrap"><div class="country-bar" style="width:21%"></div></div><div class="country-num">24</div></div>
+        <div class="country-item"><div class="flag">🇺🇦</div><div class="country-name" data-i18n="cUkraine">Ukrayna</div><div class="country-bar-wrap"><div class="country-bar" style="width:18%"></div></div><div class="country-num">21</div></div>
+        <div class="country-item"><div class="flag">🇩🇪</div><div class="country-name" data-i18n="cGermany">Almanya</div><div class="country-bar-wrap"><div class="country-bar" style="width:14%"></div></div><div class="country-num">16</div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-title mb16" data-i18n="pageTraffic">Sayfa Trafiği</div>
+      <div class="traffic-item"><div class="traffic-name">/ (<span data-i18n="homepage">Ana Sayfa</span>)</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:64%;background:var(--gold)"></div></div><div class="traffic-num">409</div><div class="traffic-pct">%64,2</div></div>
+      <div class="traffic-item"><div class="traffic-name">/ru/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:24%;background:var(--purple)"></div></div><div class="traffic-num">150</div><div class="traffic-pct">%23,6</div></div>
+      <div class="traffic-item"><div class="traffic-name">/tr/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:7%;background:var(--blue)"></div></div><div class="traffic-num">46</div><div class="traffic-pct">%7,2</div></div>
+      <div class="traffic-item"><div class="traffic-name">/thank-you/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:2%;background:var(--green)"></div></div><div class="traffic-num">11</div><div class="traffic-pct">%1,7</div></div>
+      <div class="traffic-item"><div class="traffic-name">/uk/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:2%;background:var(--red)"></div></div><div class="traffic-num">14</div><div class="traffic-pct">%2,2</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" data-i18n="sectionSocial">Sosyal Medya — Meta</div>
+    <div class="grid2">
+      <div class="social-platform">
+        <div class="social-header"><div class="social-icon ig-icon">📷</div><div><div class="social-platform-name">Instagram</div></div></div>
+        <div class="social-body">
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--gold)">307,3K</div><div class="sk" data-i18n="statViews">Görüntüleme</div></div>
+            <div><div class="sv">125,4K</div><div class="sk" data-i18n="statReach">Erişim</div></div>
+            <div><div class="sv">377</div><div class="sk" data-i18n="statEngagement">Etkileşim</div></div>
+          </div>
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--blue)">1.7K</div><div class="sk" data-i18n="statLinkClicks">Link Tık</div></div>
+            <div><div class="sv" style="color:var(--green)">80</div><div class="sk" data-i18n="statFollowers">Takipçi</div></div>
+            <div><div class="sv" style="color:var(--gold)">1B+</div><div class="sk" data-i18n="statProfileVisit">Profil Ziyaret</div></div>
+          </div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+            <span data-i18n="organic">Organik</span>: 8.829 · <span data-i18n="fromAds">Reklamdan</span>: 298.073
+          </div>
+        </div>
+      </div>
+      <div class="social-platform">
+        <div class="social-header"><div class="social-icon fb-icon">f</div><div><div class="social-platform-name">Facebook</div></div></div>
+        <div class="social-body">
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--gold)">78,9K</div><div class="sk" data-i18n="statViews">Görüntüleme</div></div>
+            <div><div class="sv">41,0K</div><div class="sk" data-i18n="statViewers">Görüntüleyen</div></div>
+            <div><div class="sv">8</div><div class="sk" data-i18n="statEngagement">Etkileşim</div></div>
+          </div>
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--gold)">↑ 4,4K%</div><div class="sk" data-i18n="statGrowth">Büyüme</div></div>
+            <div><div class="sv" style="color:var(--blue)">61</div><div class="sk" data-i18n="statVisits">Ziyaret</div></div>
+            <div><div class="sv" style="color:var(--green)">4</div><div class="sk" data-i18n="statNewFollow">Yeni Takip</div></div>
+          </div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+            <span data-i18n="organic">Organik</span>: 408 · <span data-i18n="fromAds">Reklamdan</span>: 78.538
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     HAZİRAN (JUNE)
+════════════════════════════════ -->
+<div class="month-view" id="view-jun">
+
+  <div class="hero hero-jun">
+    <div class="hero-top">
+      <div>
+        <div class="hero-h"><span style="color:var(--jun)" data-i18n="junPartial">Haziran 1–19</span></div>
+        <div class="hero-sub" data-i18n="junHeroSub">1 Haziran – 19 Haziran 2026 (kısmi ay)</div>
+      </div>
+    </div>
+    <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
+      <div><div class="hero-kpi-label" data-i18n="activeUsers">Etkin Kullanıcı</div><div class="hero-kpi-value" style="color:var(--jun)">272</div><div class="hero-kpi-note" data-i18n="partialMonth">19 günlük veri</div></div>
+      <div><div class="hero-kpi-label" data-i18n="newUsers">Yeni Kullanıcı</div><div class="hero-kpi-value">245</div></div>
+      <div><div class="hero-kpi-label" data-i18n="pageViews">Sayfa Görüntüleme</div><div class="hero-kpi-value">339</div></div>
+      <div><div class="hero-kpi-label" data-i18n="sessions">Oturumlar</div><div class="hero-kpi-value">~299</div></div>
+      <div><div class="hero-kpi-label" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="hero-kpi-value">37 <span style="font-size:14px" data-i18n="sec">sn</span></div><div class="hero-kpi-note" style="color:var(--green)">↑ En Yüksek</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" data-i18n="sectionWeb">Web Analytics — Google Analytics 4</div>
+    <div class="grid4 mb18">
+      <div class="card-sm"><div class="card-title" data-i18n="formStarts">Form Başlatma</div><div class="card-value">12</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="scrollEvents">Scroll Etkinliği</div><div class="card-value">62</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="thankYouPage">Thank-You</div><div class="card-value">5</div><div class="text-xs" data-i18n="views">görüntüleme</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="avgEngagement">Ort. Etkileşim</div><div class="card-value">37 <span style="font-size:14px" data-i18n="sec">sn</span></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title mb16" data-i18n="trafficChannels">Trafik Kanalları</div>
+        <div class="traffic-item"><div class="traffic-name">Direct</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:31%;background:var(--blue)"></div></div><div class="traffic-num">94</div><div class="traffic-pct">%31,4</div></div>
+        <div class="traffic-item"><div class="traffic-name">Referral</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:26%;background:var(--gold)"></div></div><div class="traffic-num">79</div><div class="traffic-pct">%26,4</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Search</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:22%;background:var(--green)"></div></div><div class="traffic-num">65</div><div class="traffic-pct">%21,7</div></div>
+        <div class="traffic-item"><div class="traffic-name">Paid Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:9%;background:var(--red)"></div></div><div class="traffic-num">28</div><div class="traffic-pct">%9,4</div></div>
+        <div class="traffic-item"><div class="traffic-name">Organic Social</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:9%;background:var(--purple)"></div></div><div class="traffic-num">27</div><div class="traffic-pct">%9,0</div></div>
+        <div class="traffic-item"><div class="traffic-name">AI Assistant</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--text3)"></div></div><div class="traffic-num">3</div><div class="traffic-pct">%1,0</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title mb16" data-i18n="countryDist">Ülke Dağılımı</div>
+        <div class="country-item"><div class="flag">🇸🇬</div><div class="country-name">Singapore</div><div class="country-bar-wrap"><div class="country-bar" style="width:100%"></div></div><div class="country-num">46</div></div>
+        <div class="country-item"><div class="flag">🇹🇷</div><div class="country-name" data-i18n="cTurkey">Türkiye</div><div class="country-bar-wrap"><div class="country-bar" style="width:93%"></div></div><div class="country-num">43</div></div>
+        <div class="country-item"><div class="flag">🇰🇬</div><div class="country-name" data-i18n="cKyrgyzstan">Kırgızistan</div><div class="country-bar-wrap"><div class="country-bar" style="width:67%"></div></div><div class="country-num">31</div></div>
+        <div class="country-item"><div class="flag">🇺🇦</div><div class="country-name" data-i18n="cUkraine">Ukrayna</div><div class="country-bar-wrap"><div class="country-bar" style="width:39%"></div></div><div class="country-num">18</div></div>
+        <div class="country-item"><div class="flag">🇵🇱</div><div class="country-name" data-i18n="cPoland">Polonya</div><div class="country-bar-wrap"><div class="country-bar" style="width:20%"></div></div><div class="country-num">9</div></div>
+        <div class="country-item"><div class="flag">🇸🇦</div><div class="country-name" data-i18n="cSArabia">S. Arabistan</div><div class="country-bar-wrap"><div class="country-bar" style="width:17%"></div></div><div class="country-num">8</div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-title mb16" data-i18n="pageTraffic">Sayfa Trafiği</div>
+      <div class="traffic-item"><div class="traffic-name">/ (<span data-i18n="homepage">Ana Sayfa</span>)</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:64%;background:var(--gold)"></div></div><div class="traffic-num">216</div><div class="traffic-pct">%63,7</div></div>
+      <div class="traffic-item"><div class="traffic-name">/ru/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:22%;background:var(--purple)"></div></div><div class="traffic-num">74</div><div class="traffic-pct">%21,8</div></div>
+      <div class="traffic-item"><div class="traffic-name">/tr/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:10%;background:var(--blue)"></div></div><div class="traffic-num">34</div><div class="traffic-pct">%10,0</div></div>
+      <div class="traffic-item"><div class="traffic-name">/uk/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:3%;background:var(--red)"></div></div><div class="traffic-num">10</div><div class="traffic-pct">%2,9</div></div>
+      <div class="traffic-item"><div class="traffic-name">/thank-you/</div><div class="traffic-bar-wrap"><div class="traffic-bar" style="width:1%;background:var(--green)"></div></div><div class="traffic-num">5</div><div class="traffic-pct">%1,5</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" data-i18n="sectionSocial">Sosyal Medya — Meta</div>
+    <div class="grid2">
+      <div class="social-platform">
+        <div class="social-header"><div class="social-icon ig-icon">📷</div><div><div class="social-platform-name">Instagram</div></div></div>
+        <div class="social-body">
+          <div class="social-stats">
+            <div><div class="sv">102,7K</div><div class="sk" data-i18n="statViews">Görüntüleme</div></div>
+            <div><div class="sv">53,3K</div><div class="sk" data-i18n="statReach">Erişim</div></div>
+            <div><div class="sv">450</div><div class="sk" data-i18n="statEngagement">Etkileşim</div></div>
+          </div>
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--blue)">1,3K</div><div class="sk" data-i18n="statLinkClicks">Link Tık</div></div>
+            <div><div class="sv" style="color:var(--green)">67</div><div class="sk" data-i18n="statFollowers">Takipçi</div></div>
+            <div><div class="sv" style="color:var(--gold)">1,2K</div><div class="sk" data-i18n="statProfileVisit">Profil Ziyaret</div></div>
+          </div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+            <span data-i18n="organic">Organik</span>: 8.104 · <span data-i18n="fromAds">Reklamdan</span>: 93.334
+          </div>
+        </div>
+      </div>
+      <div class="social-platform">
+        <div class="social-header"><div class="social-icon fb-icon">f</div><div><div class="social-platform-name">Facebook</div></div></div>
+        <div class="social-body">
+          <div class="social-stats">
+            <div><div class="sv">66,5K</div><div class="sk" data-i18n="statViews">Görüntüleme</div></div>
+            <div><div class="sv">39,0K</div><div class="sk" data-i18n="statViewers">Görüntüleyen</div></div>
+            <div><div class="sv" style="color:var(--green)">66</div><div class="sk" data-i18n="statEngagement">Etkileşim</div></div>
+          </div>
+          <div class="social-stats">
+            <div><div class="sv" style="color:var(--blue)">551</div><div class="sk" data-i18n="statLinkClicks">Link Tık</div></div>
+            <div><div class="sv" style="color:var(--blue)">1,3K</div><div class="sk" data-i18n="statVisits">Ziyaret</div></div>
+            <div><div class="sv" style="color:var(--green)">11</div><div class="sk" data-i18n="statNewFollow">Yeni Takip</div></div>
+          </div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+            <span data-i18n="organic">Organik</span>: 1.897 · <span data-i18n="fromAds">Reklamdan</span>: 64.645
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     Q2 — 3 AYLIK
+════════════════════════════════ -->
+<div class="month-view" id="view-all">
+
+  <div class="hero hero-3mo">
+    <div class="hero-top">
+      <div>
+        <div class="hero-h">Q2 2026 <span style="color:var(--green)">— <span data-i18n="label3mo3">3 Aylık Özet</span></span></div>
+        <div class="hero-sub" data-i18n="allHeroSub">1 Nisan – 19 Haziran 2026 · Kümülatif veriler</div>
+      </div>
+      <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span>
+    </div>
+    <div class="hero-kpis" style="grid-template-columns:repeat(5,1fr)">
+      <div><div class="hero-kpi-label" data-i18n="totalWebUsers">Toplam Web Kullanıcı</div><div class="hero-kpi-value" style="color:var(--green)">1.176</div><div class="hero-kpi-note">Apr+May+Jun</div></div>
+      <div><div class="hero-kpi-label" data-i18n="totalPageViews">Toplam Sayfa Görüntüleme</div><div class="hero-kpi-value">1.563</div></div>
+      <div><div class="hero-kpi-label" data-i18n="metaLeads">Toplam Meta Lead</div><div class="hero-kpi-value" style="color:var(--gold)">200</div><div class="hero-kpi-note">92 B2C + 108 B2B</div></div>
+      <div><div class="hero-kpi-label" data-i18n="metaSpend">Meta Harcama</div><div class="hero-kpi-value">₺55.4K</div></div>
+      <div><div class="hero-kpi-label" data-i18n="igViews">Instagram Görüntüleme</div><div class="hero-kpi-value">457K+</div></div>
+    </div>
+  </div>
+
+  <!-- Monthly Trend -->
+  <div class="section">
+    <div class="section-title" data-i18n="sectionTrend">Aylık Trend — <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
+    <div class="card">
+      <div class="card-title mb16" data-i18n="monthlyComparison">Aylık Metrik Karşılaştırması</div>
+      <div class="chart-wrap tall"><canvas id="webChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Meta Ads 3-month -->
+  <div class="section">
+    <div class="section-title">Meta Ads — <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span> &nbsp;(1 Nis – 19 Haz 2026)</div>
+    <div class="grid4 mb18">
+      <div class="card-sm"><div class="card-title" data-i18n="totalLeads">Toplam Lead</div><div class="card-value" style="color:var(--gold)">200</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="totalSpend">Toplam Harcama</div><div class="card-value">₺55.4K</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="totalReach">Toplam Erişim</div><div class="card-value">211K</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="profileVisits">Profil Ziyareti</div><div class="card-value">1.290</div></div>
+    </div>
+    <div class="ad-row" style="background:rgba(96,165,250,0.05);border-color:rgba(96,165,250,0.2)">
+      <div><div class="ad-name">Desire CIS Ads B2C</div><span class="ad-badge b2c">B2C · <span data-i18n="active">AKTİF</span></span></div>
+      <div class="ad-m"><div class="ad-mv" style="color:var(--gold)">92</div><div class="ad-mk" data-i18n="lead">Lead</div></div>
+      <div class="ad-m"><div class="ad-mv">96.472</div><div class="ad-mk" data-i18n="reach">Erişim</div></div>
+      <div class="ad-m"><div class="ad-mv">₺27.586</div><div class="ad-mk" data-i18n="spend">Harcama</div></div>
+      <div class="ad-m"><div class="ad-mv">₺299,85</div><div class="ad-mk">CPL</div></div>
+      <div class="ad-m"><div class="ad-mv">%0,89</div><div class="ad-mk">CTR</div></div>
+    </div>
+    <div class="ad-row" style="background:rgba(167,139,250,0.05);border-color:rgba(167,139,250,0.2)">
+      <div><div class="ad-name">Desire CIS Ads B2B</div><span class="ad-badge b2b">B2B · <span data-i18n="active">AKTİF</span></span></div>
+      <div class="ad-m"><div class="ad-mv" style="color:var(--gold)">108</div><div class="ad-mk" data-i18n="lead">Lead</div></div>
+      <div class="ad-m"><div class="ad-mv">97.115</div><div class="ad-mk" data-i18n="reach">Erişim</div></div>
+      <div class="ad-m"><div class="ad-mv">₺25.795</div><div class="ad-mk" data-i18n="spend">Harcama</div></div>
+      <div class="ad-m"><div class="ad-mv">₺238,85</div><div class="ad-mk">CPL</div></div>
+      <div class="ad-m"><div class="ad-mv">%0,79</div><div class="ad-mk">CTR</div></div>
+    </div>
+    <div class="ad-row" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.15)">
+      <div><div class="ad-name">Profil Visit Campaign</div><span class="ad-badge pfv"><span data-i18n="profile">PROFİL</span> · <span data-i18n="active">AKTİF</span></span></div>
+      <div class="ad-m"><div class="ad-mv" style="color:var(--green)">1.290</div><div class="ad-mk" data-i18n="profileVisit">Profil Ziyaret</div></div>
+      <div class="ad-m"><div class="ad-mv">18.091</div><div class="ad-mk" data-i18n="reach">Erişim</div></div>
+      <div class="ad-m"><div class="ad-mv">₺2.062</div><div class="ad-mk" data-i18n="spend">Harcama</div></div>
+      <div class="ad-m"><div class="ad-mv">₺1,60</div><div class="ad-mk">CPV</div></div>
+      <div class="ad-m"><div class="ad-mv">%4,48</div><div class="ad-mk">CTR</div></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div class="chart-wrap short"><canvas id="adsLeadChart"></canvas></div>
+        <div class="chart-wrap short"><canvas id="adsSpendChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organic Search 3-month -->
+  <div class="section">
+    <div class="section-title">Google Search Console — <span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
+    <div class="grid4 mb18">
+      <div class="card-sm"><div class="card-title" data-i18n="totalClicks">Toplam Tıklama</div><div class="card-value">70</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="totalImpressions">Toplam Gösterim</div><div class="card-value">2.410</div></div>
+      <div class="card-sm"><div class="card-title">CTR</div><div class="card-value">%2,9</div></div>
+      <div class="card-sm"><div class="card-title" data-i18n="avgPosition">Ort. Sıralama</div><div class="card-value">11,5</div></div>
+    </div>
+    <div class="qhrow"><div></div><div class="qh" style="text-align:left" data-i18n="query">Sorgu</div><div class="qh" data-i18n="clicks">Tıklama</div><div class="qh" data-i18n="impressions">Gösterim</div><div class="qh">CTR</div><div class="qh" data-i18n="avgPos">Ort. Konum</div></div>
+    <div class="qrow"><div class="qnum">1</div><div class="qterm">desire antalya</div><div class="qmet">64</div><div class="qmet">148</div><div class="qmet" style="color:var(--green)">%43,2</div><div class="qmet">1,30</div></div>
+    <div class="qrow"><div class="qnum">2</div><div class="qterm">desire hotel</div><div class="qmet">3</div><div class="qmet">189</div><div class="qmet">%1,59</div><div class="qmet">6,30</div></div>
+    <div class="qrow"><div class="qnum">3</div><div class="qterm">desire</div><div class="qmet">2</div><div class="qmet" style="color:var(--gold)">1.567</div><div class="qmet" style="color:var(--red)">%0,13</div><div class="qmet">10,41</div></div>
+    <div class="qrow"><div class="qnum">4</div><div class="qterm">altinis</div><div class="qmet">1</div><div class="qmet">1</div><div class="qmet" style="color:var(--green)">%100</div><div class="qmet">6,00</div></div>
+  </div>
+
+  <!-- Sales Managers 3-month -->
+  <div class="section">
+    <div class="section-title"><span data-i18n="sectionSales">Satış Müdürleri — Plan / Gerçekleşme</span> &nbsp;<span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
+    <div class="grid4">
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar">E</div>Emre</div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">66 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:66%"></div></div></div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">8 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:40%"></div></div></div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="emreAvg">Ort. 65.5 dokunuş/hafta</div>
+      </div>
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar">A</div>Aleksandr</div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">75 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:75%"></div></div></div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">13 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:65%"></div></div></div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="aleksAvg">Ort. 82 dokunuş/hafta</div>
+      </div>
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar">Ö</div>Özgür</div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">16 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:16%"></div></div></div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">0 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div></div>
+        <div style="font-size:11px;color:var(--red);margin-top:8px" data-i18n="missingData">Eksik veri — takip gerekli</div>
+      </div>
+      <div class="manager-card">
+        <div class="manager-name"><div class="manager-avatar">D</div>Daria</div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="touches">Dokunuş</span><span class="prog-val">0 / 100</span></div><div class="prog-bg"><div class="prog-fill fill-gold" style="width:0%"></div></div></div>
+        <div class="prog-wrap"><div class="prog-header"><span class="prog-label" data-i18n="meetings">Toplantı</span><span class="prog-val">0 / 20</span></div><div class="prog-bg"><div class="prog-fill fill-blue" style="width:0%"></div></div></div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px" data-i18n="newStart">Yeni başlangıç</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-title mb16" data-i18n="salesChartTitle">Satış Müdürü Dokunuş Performansı (Plan vs Gerçekleşme)</div>
+      <div class="chart-wrap"><canvas id="salesChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Social trend 3-month -->
+  <div class="section">
+    <div class="section-title"><span data-i18n="sectionSocial">Sosyal Medya</span> &nbsp;<span class="label-3mo" data-i18n="label3mo">3 AYLIK</span></div>
+    <div class="card">
+      <div class="card-title mb16" data-i18n="igTrend">Instagram & Facebook Görüntüleme Trendi</div>
+      <div class="chart-wrap tall"><canvas id="socialChart"></canvas></div>
+    </div>
+  </div>
+
+</div><!-- /view-all -->
+
+</main>
+
+<footer class="footer">
+  <div>Desire Antalya · <span data-i18n="footerReport">Dijital Performans Raporu</span> Q2 2026</div>
+  <div>desire-antalya.com · Google Analytics 4 · Meta Business · Google Search Console</div>
+  <div data-i18n="footerDate">Hazırlanma: 19 Haziran 2026</div>
+</footer>
+
+<script>
+// ══ I18N ══
+const i18n = {
+  tr:{
+    apr:'Nisan', jun:'Haziran', live:'GÜNCEL', aprFull:'Nisan 2026', mayFull:'Mayıs 2026',
+    junPartial:'Haziran 1–19', label3mo:'3 AYLIK', label3mo3:'3 Aylık Özet',
+    aprHeroSub:'1 Nisan – 30 Nisan 2026 dönemi özeti',
+    mayHeroSub:'1 Mayıs – 31 Mayıs 2026 dönemi özeti',
+    junHeroSub:'1 Haziran – 19 Haziran 2026 (kısmi ay)',
+    allHeroSub:'1 Nisan – 19 Haziran 2026 · Kümülatif veriler',
+    peakMonth:'En Yüksek Ay', partialMonth:'19 günlük veri',
+    activeUsers:'Etkin Kullanıcı', newUsers:'Yeni Kullanıcı', pageViews:'Sayfa Görüntüleme',
+    sessions:'Oturumlar', avgEngagement:'Ort. Etkileşim', sec:'sn',
+    formStarts:'Form Başlatma', scrollEvents:'Scroll Etkinliği',
+    thankYouPage:'Thank-You', views:'görüntüleme',
+    sectionWeb:'Web Analytics — Google Analytics 4', trafficChannels:'Trafik Kanalları',
+    countryDist:'Ülke Dağılımı', pageTraffic:'Sayfa Trafiği', homepage:'Ana Sayfa',
+    cTurkey:'Türkiye', cUSA:'ABD', cUkraine:'Ukrayna', cUK:'İngiltere',
+    cGermany:'Almanya', cKyrgyzstan:'Kırgızistan', cPoland:'Polonya', cSArabia:'S. Arabistan',
+    sectionSocial:'Sosyal Medya — Meta',
+    organic:'Organik', fromAds:'Reklamdan',
+    statViews:'Görüntüleme', statReach:'Erişim', statEngagement:'Etkileşim',
+    statLinkClicks:'Link Tık', statFollowers:'Takipçi', statProfileVisit:'Profil Ziyaret',
+    statViewers:'Görüntüleyen', statGrowth:'Büyüme', statVisits:'Ziyaret', statNewFollow:'Yeni Takip',
+    sectionTrend:'Aylık Trend',
+    totalWebUsers:'Toplam Web Kullanıcı', totalPageViews:'Toplam Sayfa Görüntüleme',
+    metaLeads:'Toplam Meta Lead', metaSpend:'Meta Harcama', igViews:'Instagram Görüntüleme',
+    totalLeads:'Toplam Lead', totalSpend:'Toplam Harcama', totalReach:'Toplam Erişim',
+    profileVisits:'Profil Ziyareti', active:'AKTİF', lead:'Lead', reach:'Erişim',
+    spend:'Harcama', profileVisit:'Profil Ziyaret', profile:'PROFİL',
+    totalClicks:'Toplam Tıklama', totalImpressions:'Toplam Gösterim',
+    avgPosition:'Ort. Sıralama', query:'Sorgu', clicks:'Tıklama',
+    impressions:'Gösterim', avgPos:'Ort. Konum',
+    sectionSales:'Satış Müdürleri — Plan / Gerçekleşme',
+    touches:'Dokunuş', meetings:'Toplantı',
+    emreAvg:'Ort. 65.5 dokunuş/hafta', aleksAvg:'Ort. 82 dokunuş/hafta',
+    missingData:'Eksik veri — takip gerekli', newStart:'Yeni başlangıç',
+    salesChartTitle:'Satış Müdürü Dokunuş Performansı (Plan vs Gerçekleşme)',
+    monthlyComparison:'Aylık Metrik Karşılaştırması',
+    igTrend:'Instagram & Facebook Görüntüleme Trendi',
+    footerReport:'Dijital Performans Raporu', footerDate:'Hazırlanma: 19 Haziran 2026',
+  },
+  en:{
+    apr:'April', jun:'June', live:'LIVE', aprFull:'April 2026', mayFull:'May 2026',
+    junPartial:'June 1–19', label3mo:'3-MONTH', label3mo3:'3-Month Summary',
+    aprHeroSub:'Summary for 1 April – 30 April 2026',
+    mayHeroSub:'Summary for 1 May – 31 May 2026',
+    junHeroSub:'1 June – 19 June 2026 (partial month)',
+    allHeroSub:'1 April – 19 June 2026 · Cumulative data',
+    peakMonth:'Peak Month', partialMonth:'19-day data',
+    activeUsers:'Active Users', newUsers:'New Users', pageViews:'Page Views',
+    sessions:'Sessions', avgEngagement:'Avg. Engagement', sec:'sec',
+    formStarts:'Form Starts', scrollEvents:'Scroll Events',
+    thankYouPage:'Thank-You', views:'views',
+    sectionWeb:'Web Analytics — Google Analytics 4', trafficChannels:'Traffic Channels',
+    countryDist:'Country Distribution', pageTraffic:'Page Traffic', homepage:'Home',
+    cTurkey:'Turkey', cUSA:'USA', cUkraine:'Ukraine', cUK:'UK',
+    cGermany:'Germany', cKyrgyzstan:'Kyrgyzstan', cPoland:'Poland', cSArabia:'Saudi Arabia',
+    sectionSocial:'Social Media — Meta',
+    organic:'Organic', fromAds:'From Ads',
+    statViews:'Views', statReach:'Reach', statEngagement:'Engagement',
+    statLinkClicks:'Link Clicks', statFollowers:'Followers', statProfileVisit:'Profile Visits',
+    statViewers:'Viewers', statGrowth:'Growth', statVisits:'Visits', statNewFollow:'New Follows',
+    sectionTrend:'Monthly Trend',
+    totalWebUsers:'Total Web Users', totalPageViews:'Total Page Views',
+    metaLeads:'Total Meta Leads', metaSpend:'Meta Spend', igViews:'Instagram Views',
+    totalLeads:'Total Leads', totalSpend:'Total Spend', totalReach:'Total Reach',
+    profileVisits:'Profile Visits', active:'ACTIVE', lead:'Lead', reach:'Reach',
+    spend:'Spend', profileVisit:'Profile Visit', profile:'PROFILE',
+    totalClicks:'Total Clicks', totalImpressions:'Total Impressions',
+    avgPosition:'Avg. Position', query:'Query', clicks:'Clicks',
+    impressions:'Impressions', avgPos:'Avg. Position',
+    sectionSales:'Sales Managers — Plan / Actual',
+    touches:'Touches', meetings:'Meetings',
+    emreAvg:'Avg. 65.5 touches/week', aleksAvg:'Avg. 82 touches/week',
+    missingData:'Missing data — follow-up needed', newStart:'New start',
+    salesChartTitle:'Sales Manager Touch Performance (Plan vs Actual)',
+    monthlyComparison:'Monthly Metric Comparison',
+    igTrend:'Instagram & Facebook Views Trend',
+    footerReport:'Digital Performance Report', footerDate:'Prepared: 19 June 2026',
+  },
+  uk:{
+    apr:'Квітень', jun:'Червень', live:'АКТУАЛЬНО', aprFull:'Квітень 2026', mayFull:'Травень 2026',
+    junPartial:'Червень 1–19', label3mo:'3 МІС.', label3mo3:'Зведення за 3 місяці',
+    aprHeroSub:'Зведення за 1 квітня – 30 квітня 2026',
+    mayHeroSub:'Зведення за 1 травня – 31 травня 2026',
+    junHeroSub:'1 червня – 19 червня 2026 (неповний місяць)',
+    allHeroSub:'1 квітня – 19 червня 2026 · Накопичені дані',
+    peakMonth:'Піковий місяць', partialMonth:'Дані за 19 днів',
+    activeUsers:'Активні користувачі', newUsers:'Нові користувачі', pageViews:'Перегляди сторінок',
+    sessions:'Сеанси', avgEngagement:'Серед. взаємодія', sec:'сек',
+    formStarts:'Початки форм', scrollEvents:'Події прокрутки',
+    thankYouPage:'Сторінка подяки', views:'перегляди',
+    sectionWeb:'Веб-аналітика — Google Analytics 4', trafficChannels:'Канали трафіку',
+    countryDist:'Розподіл по країнах', pageTraffic:'Трафік сторінок', homepage:'Головна',
+    cTurkey:'Туреччина', cUSA:'США', cUkraine:'Україна', cUK:'Велика Британія',
+    cGermany:'Німеччина', cKyrgyzstan:'Киргизстан', cPoland:'Польща', cSArabia:'Саудівська Аравія',
+    sectionSocial:'Соцмережі — Meta',
+    organic:'Органічно', fromAds:'З реклами',
+    statViews:'Перегляди', statReach:'Охоплення', statEngagement:'Взаємодія',
+    statLinkClicks:'Кліки по посил.', statFollowers:'Підписники', statProfileVisit:'Відвід. профілю',
+    statViewers:'Глядачі', statGrowth:'Зростання', statVisits:'Відвідування', statNewFollow:'Нові підписки',
+    sectionTrend:'Щомісячний тренд',
+    totalWebUsers:'Всього користувачів', totalPageViews:'Всього переглядів',
+    metaLeads:'Всього лідів Meta', metaSpend:'Витрати Meta', igViews:'Перегляди Instagram',
+    totalLeads:'Всього лідів', totalSpend:'Загальні витрати', totalReach:'Загальне охоплення',
+    profileVisits:'Відвідування профілю', active:'АКТИВНА', lead:'Лід', reach:'Охоплення',
+    spend:'Витрати', profileVisit:'Відвід. профілю', profile:'ПРОФІЛЬ',
+    totalClicks:'Всього кліків', totalImpressions:'Всього показів',
+    avgPosition:'Серед. позиція', query:'Запит', clicks:'Кліки',
+    impressions:'Покази', avgPos:'Серед. позиція',
+    sectionSales:'Менеджери з продажу — План / Факт',
+    touches:'Контакти', meetings:'Зустрічі',
+    emreAvg:'Серед. 65.5 контактів/тиждень', aleksAvg:'Серед. 82 контакти/тиждень',
+    missingData:'Відсутні дані — потрібен контроль', newStart:'Новий старт',
+    salesChartTitle:'Ефективність контактів менеджерів (План vs Факт)',
+    monthlyComparison:'Щомісячне порівняння метрик',
+    igTrend:'Тренд переглядів Instagram & Facebook',
+    footerReport:'Звіт про цифрову ефективність', footerDate:'Підготовлено: 19 червня 2026',
+  }
+};
+let currentLang='tr', currentMonth='apr';
+
+function setLang(lang){
+  currentLang=lang;
+  const t=i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.textContent=t[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.documentElement.lang=lang;
+  updateCharts(lang);
+}
+
+function setMonth(month){
+  currentMonth=month;
+  document.querySelectorAll('.month-view').forEach(v=>v.classList.remove('visible'));
+  document.getElementById('view-'+month).classList.add('visible');
+  document.querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector(`.month-tab[data-month="${month}"]`).classList.add('active');
+  if(month==='all') rebuildCharts();
+}
+
+// ══ CHARTS ══
+const gold='#C9A96E',gold2='#E8C98A',blue='#60A5FA',green='#4ADE80',
+      purple='#A78BFA',red='#F87171',text2='#8A94A6',border='rgba(255,255,255,0.06)';
+Chart.defaults.color=text2; Chart.defaults.borderColor=border;
+Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif"; Chart.defaults.font.size=11;
+
+const monthLbls={tr:['Nisan','Mayıs','Haziran*'],en:['April','May','June*'],uk:['Квітень','Травень','Червень*']};
+const webDsLbls={tr:['Etkin Kullanıcı','Sayfa Görüntüleme','Yeni Kullanıcı'],en:['Active Users','Page Views','New Users'],uk:['Активні кор.','Перегляди','Нові кор.']};
+const socDsLbls={tr:['Instagram Görüntüleme','Facebook Görüntüleme','Instagram Erişim'],en:['Instagram Views','Facebook Views','Instagram Reach'],uk:['Перегляди Instagram','Перегляди Facebook','Охоплення Instagram']};
+const salesLbls={tr:['Emre H1','Emre H2','Aleksandr H1','Aleksandr H2','Özgür'],en:['Emre W1','Emre W2','Aleksandr W1','Aleksandr W2','Özgür'],uk:['Емре Т1','Емре Т2','Олекс Т1','Олекс Т2','Озгюр']};
+const planActLbls={tr:['Plan','Gerçekleşen'],en:['Plan','Actual'],uk:['План','Факт']};
+const leadLbls={tr:['B2B Leads','B2C Leads'],en:['B2B Leads','B2C Leads'],uk:['B2B Ліди','B2C Ліди']};
+const spendLbls={tr:['B2C','B2B','Profil'],en:['B2C','B2B','Profile'],uk:['B2C','B2B','Профіль']};
+
+let webChart, socialChart, adsLeadChart, adsSpendChart, salesChart;
+
+function rebuildCharts(){
+  const lang=currentLang;
+  if(webChart) webChart.destroy();
+  if(socialChart) socialChart.destroy();
+  if(adsLeadChart) adsLeadChart.destroy();
+  if(adsSpendChart) adsSpendChart.destroy();
+  if(salesChart) salesChart.destroy();
+
+  webChart=new Chart(document.getElementById('webChart'),{type:'bar',data:{labels:monthLbls[lang],datasets:[
+    {label:webDsLbls[lang][0],data:[417,487,272],backgroundColor:'rgba(96,165,250,0.75)',borderRadius:6,borderSkipped:false},
+    {label:webDsLbls[lang][1],data:[587,637,339],backgroundColor:'rgba(201,169,110,0.75)',borderRadius:6,borderSkipped:false},
+    {label:webDsLbls[lang][2],data:[385,463,245],backgroundColor:'rgba(74,222,128,0.55)',borderRadius:6,borderSkipped:false}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}},scales:{x:{grid:{color:border}},y:{grid:{color:border},beginAtZero:true}}}});
+
+  socialChart=new Chart(document.getElementById('socialChart'),{type:'line',data:{labels:monthLbls[lang],datasets:[
+    {label:socDsLbls[lang][0],data:[47700,307300,102700],borderColor:purple,backgroundColor:'rgba(167,139,250,0.08)',tension:0.4,fill:true,pointBackgroundColor:purple,pointRadius:5},
+    {label:socDsLbls[lang][1],data:[1735,78946,66542],borderColor:blue,backgroundColor:'rgba(96,165,250,0.06)',tension:0.4,fill:true,pointBackgroundColor:blue,pointRadius:5},
+    {label:socDsLbls[lang][2],data:[21900,125400,53300],borderColor:gold,tension:0.4,fill:false,pointBackgroundColor:gold,pointRadius:5,borderDash:[4,3]}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}},scales:{x:{grid:{color:border}},y:{grid:{color:border},ticks:{callback:v=>v>=1000?(v/1000).toFixed(0)+'K':v},beginAtZero:true}}}});
+
+  const leadTitle=lang==='uk'?'Розподіл лідів':lang==='en'?'Lead Distribution':'Lead Dağılımı';
+  const spendTitle=lang==='uk'?'Розподіл витрат':lang==='en'?'Spend Distribution':'Harcama Dağılımı';
+  adsLeadChart=new Chart(document.getElementById('adsLeadChart'),{type:'doughnut',data:{labels:leadLbls[lang],datasets:[{data:[108,92],backgroundColor:[purple,blue],borderColor:'#141B2D',borderWidth:3,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:14,usePointStyle:true}},title:{display:true,text:leadTitle,color:text2,font:{size:11},padding:{bottom:8}}},cutout:'68%'}});
+
+  adsSpendChart=new Chart(document.getElementById('adsSpendChart'),{type:'doughnut',data:{labels:spendLbls[lang],datasets:[{data:[27586,25796,2062],backgroundColor:[blue,purple,green],borderColor:'#141B2D',borderWidth:3,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,font:{size:10}}},title:{display:true,text:spendTitle,color:text2,font:{size:11},padding:{bottom:8}}},cutout:'68%'}});
+
+  salesChart=new Chart(document.getElementById('salesChart'),{type:'bar',data:{labels:salesLbls[lang],datasets:[
+    {label:planActLbls[lang][0],data:[100,100,100,100,100],backgroundColor:'rgba(255,255,255,0.08)',borderRadius:4,borderSkipped:false},
+    {label:planActLbls[lang][1],data:[66,65,75,89,16],backgroundColor:['rgba(201,169,110,0.8)','rgba(201,169,110,0.8)','rgba(96,165,250,0.8)','rgba(96,165,250,0.8)','rgba(248,113,113,0.7)'],borderRadius:4,borderSkipped:false}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyle:'circle',padding:14}}},scales:{x:{grid:{color:border}},y:{grid:{color:border},beginAtZero:true,max:110}}}});
+}
+
+function updateCharts(lang){
+  if(currentMonth==='all') rebuildCharts();
+}
+</script>
+</body>
+</html>
